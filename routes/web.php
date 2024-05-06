@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +24,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
+require __DIR__.'/auth.php';
+
 /// User Profile Auth
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [UserController::class, 'UserProfile'])->name('user.profile');
@@ -35,6 +39,20 @@ Route::middleware('auth')->group(function () {
 });
 
 
+// Admin routes login
+Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
+
+Route::post('/admin/store/', [AuthenticatedSessionController::class, 'AdminStore'])->name('admin.store');
 
 
-require __DIR__.'/auth.php';
+//Admin group Middleware Routes
+Route::middleware(['auth', 'roles:admin'])->group(function (){
+
+    Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
+    Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
+    Route::get('/admin/profile', [AdminController::class, 'AdminProfile'])->name('admin.profile');
+    Route::post('/admin/profile/store', [AdminController::class, 'AdminProfileStore'])->name('admin.profile.store');
+    Route::get('/admin/change/password', [AdminController::class, 'AdminChangePassword'])->name('admin.change.password');
+    Route::post('/admin/password/update', [AdminController::class, 'AdminPasswordUpdate'])->name('admin.password.update');
+
+}); // End Admin Group Middleware

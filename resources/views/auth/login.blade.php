@@ -97,7 +97,9 @@
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-key"></i></span>
 						</div>
-						<input type="password" name="password" class="form-control" placeholder="password" required autocomplete="current-password">
+						<input type="password" name="password" class="form-control" placeholder="password" required 
+                            autocomplete="current-password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                                aria-describedby="password">
                         
                     </div>
 					<div class="row align-items-center remember">
