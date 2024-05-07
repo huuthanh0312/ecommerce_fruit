@@ -50,10 +50,11 @@
     {{-- sweetalert2 --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <!-- Place the first <script> tag in your HTML's <head> -->
-	<script src="https://cdn.tiny.cloud/1/1lx3lhgdvasno7o9z8oi0pipdxdoasxqyqyqvc985ueokhqv/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
-	<!-- Place the following <script> and <textarea> tags your HTML's <body> -->
-		<script>
-			tinymce.init({
+    <script src="https://cdn.tiny.cloud/1/1lx3lhgdvasno7o9z8oi0pipdxdoasxqyqyqvc985ueokhqv/tinymce/7/tinymce.min.js"
+        referrerpolicy="origin"></script>
+    <!-- Place the following <script> and <textarea> tags your HTML's <body> -->
+    <script>
+        tinymce.init({
 			selector: 'textarea#content_tindy',
 			plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown',
 			toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
@@ -65,8 +66,8 @@
 			],
 			ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
 			});
-		</script>
-	{{-- END sweetalert2 --}}
+    </script>
+    {{-- END sweetalert2 --}}
 </head>
 
 <body>
@@ -82,7 +83,7 @@
             <div class="layout-page">
                 <!-- Navbar -->
                 @include('admin.body.header')
-                
+
 
                 <!-- / Navbar -->
 
@@ -150,16 +151,43 @@
             }
 	    @endif 
     </script>
+    <script>
+        $(function(){
+            $(document).on('click','#delete',function(e){
+                e.preventDefault();
+                var link = $(this).attr("href");
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "Delete This Data?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                    window.location.href = link
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    )
+                    }
+                }) 
+            });
+        });
+       
+    </script>
 
     <script src="https://cdn.datatables.net/2.0.6/js/dataTables.min.js"></script>
-	<script src="https://cdn.datatables.net/2.0.6/js/dataTables.bootstrap5.min.js"></script>
-	<script>
-		$(document).ready(function() {
+    <script src="https://cdn.datatables.net/2.0.6/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function() {
 			$('#example').DataTable();
 		  } );
-	</script>
-	<script>
-		$(document).ready(function() {
+    </script>
+    <script>
+        $(document).ready(function() {
 			var table = $('#example2').DataTable( {
 				lengthChange: false,
 				buttons: [ 'copy', 'excel', 'pdf', 'print']
@@ -168,7 +196,7 @@
 			table.buttons().container()
 				.appendTo( '#example2_wrapper .col-md-6:eq(0)' );
 		} );
-	</script>
+    </script>
 </body>
 
 </html>

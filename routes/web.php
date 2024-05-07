@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -60,5 +61,21 @@ Route::middleware(['auth', 'roles:admin'])->group(function (){
 
 // Backend Admin setup
 Route::middleware(['auth', 'roles:admin'])->group(function (){
-
+        // Category Routes
+        Route::controller(CategoryController::class)->group(function (){
+            //// Category CRUD
+            Route::get('/category/all', 'AllCategory' )->name('category.all');
+    
+            Route::get('/category/add', 'AddCategory' )->name('category.add');
+    
+            Route::post('/category/store', 'StoreCategory' )->name('category.store');
+    
+            Route::get('/category/edit/{id}', 'EditCategory' )->name('category.edit');
+    
+            Route::post('/category/update', 'UpdateCategory' )->name('category.update');
+    
+            Route::get('/category/delete/{id}', 'DeleteCategory' )->name('category.delete');
+    
+        });
+    
 }); // End Admin Group Function 
