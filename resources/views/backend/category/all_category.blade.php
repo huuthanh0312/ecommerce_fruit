@@ -4,68 +4,65 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <div class="container-xxl flex-grow-1 container-p-y">
-    <div class="row">
-        <!--breadcrumb-->
-        <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
 
-            <div class="ps-3">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb mb-0 p-0">
-                        <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}"><i
-                                    class="bx bx-home-alt"></i></a>
-                        </li>
-                        <li class="breadcrumb-item active" aria-current="page"> Categories</li>
-                    </ol>
-                </nav>
-            </div>
-            <div class="ms-auto">
-                <div class="btn-group">
-                    <button data-bs-toggle="modal" data-bs-target="#exampleModal"
-                        class="btn btn-outline-primary px-5 radius-30">Add Category</a>
-
-                </div>
-            </div>
+    <!--breadcrumb-->
+    <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+        <div class="ps-3">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0 p-0">
+                    <li class="breadcrumb-item">
+                        <a href="{{route('admin.dashboard')}}"><i class="bx bx-home-alt"></i></a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Categories</li>
+                </ol>
+            </nav>
         </div>
-        <!--end breadcrumb-->
+        <div class="ms-auto">
+            <div class="btn-group">
+                <button data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    class="btn btn-outline-primary px-5 radius-30">Add Category</button>
 
-        <hr />
-        <div class="card">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table id="example" class="table table-striped table-bordered text-center" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>SL</th>
-                                <th>Category Name</th>
-                                <th>Category Name Slug</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($categories as $key => $item)
-
-                            <tr>
-                                <td>{{ $key +1 }}</td>
-                                <td>{{$item->category_name}}</td>
-                                <td>{{$item->category_name_slug}}</td>d
-
-                                <td>
-                                    <button data-bs-toggle="modal" data-bs-target="#edit_category" id="{{$item->id}}"
-                                        onclick="categoryEdit(this.id)"
-                                        class="btn btn-outline-warning px-5 radius-30">Edit</button>
-                                    <a href="{{ route('category.delete', $item->id)}}" id="delete"
-                                        class="btn btn-outline-danger px-5 radius-30">Delete</a>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-
-                    </table>
-                </div>
             </div>
         </div>
     </div>
+    <!--end breadcrumb-->
 
+    <hr />
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="example" class="table table-striped table-bordered text-center" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>SL</th>
+                            <th>Category Name</th>
+                            <th>Category Name Slug</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($categories as $key => $item)
+
+                        <tr>
+                            <td>{{ $key +1 }}</td>
+                            <td>{{$item->category_name}}</td>
+                            <td>{{$item->category_name_slug}}</td>d
+
+                            <td>
+                                <button data-bs-toggle="modal" data-bs-target="#edit_category" id="{{$item->id}}"
+                                    onclick="categoryEdit(this.id)"
+                                    class="btn btn-outline-warning px-5 radius-30">Edit</button>
+                                <a href="{{ route('category.delete', $item->id)}}" id="delete"
+                                    class="btn btn-outline-danger px-5 radius-30">Delete</a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
 
     <!-- Modal Add Category -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

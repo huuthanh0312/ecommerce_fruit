@@ -85,25 +85,22 @@
             </a>
         </li>
         <!-- Components -->
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">Manage Customers</span></li>
+        <!-- Cards -->
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div data-i18n="Form Layouts">Manage Customers</div>
+            </a>
+        </li>
+        <!-- Components -->
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Manage Others</span></li>
         <!-- Cards -->
         <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <a href="{{route('post.all')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
                 <div data-i18n="Form Layouts">Manage Post</div>
             </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="form-layouts-vertical.html" class="menu-link">
-                        <div data-i18n="Vertical Form">All Post</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="form-layouts-horizontal.html" class="menu-link">
-                        <div data-i18n="Horizontal Form">Add Post</div>
-                    </a>
-                </li>
-            </ul>
         </li>
 
         <li class="menu-item">
@@ -161,6 +158,8 @@
                 <div data-i18n="Form Layouts">SMTP Setting</div>
             </a>
         </li>
-        i>
+
     </ul>
+    <br>
+    <br>
 </aside>

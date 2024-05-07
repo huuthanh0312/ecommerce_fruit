@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -75,6 +76,24 @@ Route::middleware(['auth', 'roles:admin'])->group(function (){
             Route::post('/category/update', 'UpdateCategory' )->name('category.update');
     
             Route::get('/category/delete/{id}', 'DeleteCategory' )->name('category.delete');
+    
+        });
+
+
+        // Post Routes
+        Route::controller(PostController::class)->group(function (){
+            //// Post CRUD
+            Route::get('/post/all', 'AllPost' )->name('post.all');
+    
+            Route::get('/post/add', 'AddPost' )->name('post.add');
+    
+            Route::post('/post/store', 'StorePost' )->name('post.store');
+    
+            Route::get('/post/edit/{id}', 'EditPost' )->name('post.edit');
+    
+            Route::post('/post/update', 'UpdatePost' )->name('post.update');
+    
+            Route::get('/post/delete/{id}', 'DeletePost' )->name('post.delete');
     
         });
     

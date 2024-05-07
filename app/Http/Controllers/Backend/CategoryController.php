@@ -10,7 +10,6 @@ use Carbon\Carbon;
 class CategoryController extends Controller
 {
     // Category Methods
-    // Category controller 
     public function AllCategory(){
         $categories = Category::latest()->get();  // get data team
 
