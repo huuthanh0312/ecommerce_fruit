@@ -26,12 +26,21 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
-        $request->session()->regenerate();
+        $request->authenticate();       
         
+        if($request->user()->status === 'inactive'){
+            $request->session()->invalidate();
+    
+            $request->session()->regenerateToken();
+            $notification = array(
+                'message'=> 'Your Account Has Been Locked',
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification);
+        }
+        $request->session()->regenerate();
         $id = Auth::user()->id;
         $profileData = User::find($id);
-        
         $url ='';
         if($request->user()->role === 'admin'){
            
@@ -59,8 +68,20 @@ class AuthenticatedSessionController extends Controller
     public function AdminStore(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
+        
+        if($request->user()->status === 'inactive'){
+            $request->session()->invalidate();
+    
+            $request->session()->regenerateToken();
+            $notification = array(
+                'message'=> 'Your Account Has Been Locked',
+                'alert-type' => 'eroor'
+            );
+            return redirect()->back()->with($notification);
+        }     
+        $request->session()->regenerate();  
         $id = Auth::user()->id;
-        $profileData = User::find($id);        
+        $profileData = User::find($id); 
         $url ='';
         if($request->user()->role === 'admin'){
             $request->session()->regenerate();

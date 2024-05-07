@@ -88,7 +88,7 @@
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Manage Customers</span></li>
         <!-- Cards -->
         <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link">
+            <a href="{{route('customer.all')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
                 <div data-i18n="Form Layouts">Manage Customers</div>
             </a>
@@ -104,7 +104,7 @@
         </li>
 
         <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link">
+            <a href="{{route('contact.all')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
                 <div data-i18n="Form Layouts">Manage Contact</div>
             </a>

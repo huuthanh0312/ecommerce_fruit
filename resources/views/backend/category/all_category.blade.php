@@ -46,8 +46,7 @@
                         <tr>
                             <td>{{ $key +1 }}</td>
                             <td>{{$item->category_name}}</td>
-                            <td>{{$item->category_name_slug}}</td>d
-
+                            <td>{{$item->category_name_slug}}</td>
                             <td>
                                 <button data-bs-toggle="modal" data-bs-target="#edit_category" id="{{$item->id}}"
                                     onclick="categoryEdit(this.id)"

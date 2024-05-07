@@ -3,6 +3,8 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\ContactController;
+use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -80,6 +82,21 @@ Route::middleware(['auth', 'roles:admin'])->group(function (){
         });
 
 
+        
+        // Customer Routes
+        Route::controller(CustomerController::class)->group(function (){
+            //// Custommer CRUD
+            Route::get('/customer/all', 'AllCustomer' )->name('customer.all');
+
+            Route::get('/customer/edit/{id}', 'EditCustomer' )->name('customer.edit');
+
+            Route::post('/customer/update', 'UpdateCustomer' )->name('customer.update');
+
+            Route::post('/customer/status', 'UpdateCustomerStatus' )->name('customer.update.status');
+
+            
+
+        });
         // Post Routes
         Route::controller(PostController::class)->group(function (){
             //// Post CRUD
@@ -96,5 +113,21 @@ Route::middleware(['auth', 'roles:admin'])->group(function (){
             Route::get('/post/delete/{id}', 'DeletePost' )->name('post.delete');
     
         });
+        
+        // contact Routes
+        Route::controller(ContactController::class)->group(function (){
+            //// Contact CRUD
+            Route::get('/contact/all', 'AllContact' )->name('contact.all');
+    
+            Route::get('/contact/edit/{id}', 'EditContact' )->name('contact.edit');
+    
+            Route::post('/contact/update', 'UpdateContact' )->name('contact.update');
+    
+            Route::get('/contact/delete/{id}', 'DeleteContact' )->name('contact.delete');
+    
+        });
+
+                
+        
     
 }); // End Admin Group Function 
