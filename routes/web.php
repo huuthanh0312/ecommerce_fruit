@@ -56,3 +56,9 @@ Route::middleware(['auth', 'roles:admin'])->group(function (){
     Route::post('/admin/password/update', [AdminController::class, 'AdminPasswordUpdate'])->name('admin.password.update');
 
 }); // End Admin Group Middleware
+
+
+// Backend Admin setup
+Route::middleware(['auth', 'roles:admin'])->group(function (){
+
+}); // End Admin Group Function 

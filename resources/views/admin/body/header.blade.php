@@ -1,7 +1,7 @@
 @php
-    $id = Auth::user()->id;
-    $profileData = App\Models\User::find($id)
-    
+$id = Auth::user()->id;
+$profileData = App\Models\User::find($id)
+
 @endphp
 
 <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
@@ -24,16 +24,52 @@
         <!-- /Search -->
 
         <ul class="navbar-nav flex-row align-items-center ms-auto">
-            <!-- Place this tag where you want the button to render. -->
-            <li class="nav-item lh-1 me-3">
-                
+            <li class="nav-item dropdown dropdown-large ">
+                <a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative text-warning" href="#" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false"> 
+                    {{-- <span class="alert-count">8</span> --}}
+                    <i class='bx bx-shopping-bag'></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end p-3">
+                    <div class="header-message-list p-3">
+                        <a class="dropdown-item" href="javascript:;">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="position-relative">
+                                    <div class="cart-product rounded-circle bg-light">
+                                        <img src="assets/images/products/11.png" class="" alt="product image">
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h6 class="cart-product-title mb-0"></h6>
+                                    <p class="cart-product-price mb-0"></p>
+                                </div>
+                                <div class="">
+                                    <p class="cart-price mb-0">$250</p>
+                                </div>
+                                <div class="cart-product-cancel"><i class="bx bx-x"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <a href="javascript:;">
+                        <div class="text-center msg-footer ">
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <h5 class="mb-0">Total</h5>
+                                <h5 class="mb-0 ms-auto">$489.00</h5>
+                            </div>
+                            <button class="btn btn-primary w-100">Checkout</button>
+                        </div>
+                    </a>
+                </div>
             </li>
 
             <!-- User -->
             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                        <img src="{{ !empty($profileData->photo) ? url($profileData->photo) : url('upload/no_image.jpg')}}" alt class="w-px-40 h-auto rounded-circle" />
+                        <img class="rounded-circle  bg-primary"
+                            src="{{ !empty($profileData->photo) ? url($profileData->photo) : url('upload/no_image.jpg')}}"
+                            alt class="w-px-40 h-auto rounded-circle" />
                     </div>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
@@ -42,8 +78,9 @@
                             <div class="d-flex">
                                 <div class="flex-shrink-0 me-3">
                                     <div class="avatar avatar-online">
-                                        <img src="{{ !empty($profileData->photo) ? url($profileData->photo) : url('upload/no_image.jpg')}}" alt
-                                            class="w-px-40 h-auto rounded-circle" />
+                                        <img class="rounded-circle bg-primary"
+                                            src="{{ !empty($profileData->photo) ? url($profileData->photo) : url('upload/no_image.jpg')}}"
+                                            alt class="w-px-40 h-auto rounded-circle" />
                                     </div>
                                 </div>
                                 <div class="flex-grow-1">
