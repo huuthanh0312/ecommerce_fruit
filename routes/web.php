@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\PostController;
+use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -81,7 +82,22 @@ Route::middleware(['auth', 'roles:admin'])->group(function (){
     
         });
 
-
+       // Product Routes
+        Route::controller(ProductController::class)->group(function (){
+            //// Product CRUD
+            Route::get('/product/all', 'AllProduct' )->name('product.all');
+    
+            Route::get('/product/add', 'AddProduct' )->name('product.add');
+    
+            Route::post('/product/store', 'StoreProduct' )->name('product.store');
+    
+            Route::get('/product/edit/{id}', 'EditProduct' )->name('product.edit');
+    
+            Route::post('/product/update', 'UpdateProduct' )->name('product.update');
+    
+            Route::get('/product/delete/{id}', 'DeleteProduct' )->name('product.delete');
+    
+        });
         
         // Customer Routes
         Route::controller(CustomerController::class)->group(function (){

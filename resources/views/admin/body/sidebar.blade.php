@@ -37,12 +37,12 @@
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="auth-login-basic.html" class="menu-link" target="_blank">
+                    <a href="{{route('product.all')}}" class="menu-link">
                         <div data-i18n="Basic">All Product</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="auth-register-basic.html" class="menu-link" target="_blank">
+                    <a href="{{route('product.add')}}" class="menu-link">
                         <div data-i18n="Basic">Add Product</div>
                     </a>
                 </li>
@@ -146,7 +146,7 @@
                     </a>
                 </li>
             </ul>
-            </l <li class="menu-item">
+        <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
                 <div data-i18n="Form Layouts">Site Setting</div>

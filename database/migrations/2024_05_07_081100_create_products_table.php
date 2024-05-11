@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('hot_new')->nullable();
             $table->string('image')->nullable();
             $table->text('short_desc')->nullable();
-            $table->text('description')->nullable();
+            $table->longtext('description')->nullable();
             $table->integer('status')->default(1);
             $table->timestamps();
         });

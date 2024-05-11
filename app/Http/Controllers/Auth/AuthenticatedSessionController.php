@@ -75,7 +75,7 @@ class AuthenticatedSessionController extends Controller
             $request->session()->regenerateToken();
             $notification = array(
                 'message'=> 'Your Account Has Been Locked',
-                'alert-type' => 'eroor'
+                'alert-type' => 'error'
             );
             return redirect()->back()->with($notification);
         }     
