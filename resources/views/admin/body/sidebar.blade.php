@@ -147,9 +147,9 @@
                 </li>
             </ul>
         <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link">
+            <a href="{{route('site.setting.show')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
-                <div data-i18n="Form Layouts">Site Setting</div>
+                <div data-i18n="Form Layouts">Site Settings</div>
             </a>
         </li>
         <li class="menu-item">

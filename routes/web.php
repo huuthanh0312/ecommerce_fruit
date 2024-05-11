@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\SiteSettingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -141,6 +142,19 @@ Route::middleware(['auth', 'roles:admin'])->group(function (){
     
             Route::get('/contact/delete/{id}', 'DeleteContact' )->name('contact.delete');
     
+        });
+
+
+
+
+
+        // site-setting Routes
+        Route::controller(SiteSettingController::class)->group(function (){
+            
+            Route::get('/site-setting/show', 'ShowSiteSetting' )->name('site.setting.show');
+   
+            Route::post('/site-setting/update', 'UpdateSiteSetting' )->name('site.setting.update');
+                
         });
 
                 
