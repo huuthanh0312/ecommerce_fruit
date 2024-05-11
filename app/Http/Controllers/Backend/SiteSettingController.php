@@ -18,7 +18,7 @@ class SiteSettingController extends Controller
       // Add Data SiteSetting 
     public function UpdateSiteSetting(Request $request){ 
     
-        SiteSetting:: insert([
+        SiteSetting:: find($request->id)->update([
             'phone'=> $request->phone,
             'email'=> $request->email,
             'address'=> $request->address,

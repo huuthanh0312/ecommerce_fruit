@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SiteSettingController;
+use App\Http\Controllers\Backend\SmtpSettingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -146,7 +147,14 @@ Route::middleware(['auth', 'roles:admin'])->group(function (){
 
 
 
+        // SMTP Setting Routes
+        Route::controller(SmtpSettingController::class)->group(function (){
+            //// SMTP Setting
+            Route::get('/smtp-setting', 'SmtpSetting' )->name('smtp.setting');
 
+            Route::post('/smtp-setting/update', 'UpdateSmtpSetting' )->name('smtp.update');
+        
+        });
 
         // site-setting Routes
         Route::controller(SiteSettingController::class)->group(function (){
