@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');         
-            $table->float('total_price')->default(0);
+            $table->double('total_price')->default(0);
 
             $table->string('payment_method')->nullable();
             $table->string('transaction_id')->nullable();

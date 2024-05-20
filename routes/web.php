@@ -9,6 +9,8 @@ use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SiteSettingController;
 use App\Http\Controllers\Backend\SmtpSettingController;
+use App\Http\Controllers\Frontend\FrOrderController;
+use App\Http\Controllers\Frontend\FrProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -163,9 +165,49 @@ Route::middleware(['auth', 'roles:admin'])->group(function (){
    
             Route::post('/site-setting/update', 'UpdateSiteSetting' )->name('site.setting.update');
                 
-        });
-
-                
-        
+        });                
     
 }); // End Admin Group Function 
+
+
+//frontend routes
+Route::controller(FrProductController::class)->group(function (){
+    // get Product By Category
+    Route::get('/category/{slug}', 'ProductByCategory')->name('category.product');
+    // get Product alls
+    Route::get('/products', 'AllProduct')->name('products');
+    // get product details
+    Route::get('/products/{slug}', 'ProductDetails')->name('product.details');
+
+    // Cart Add get Javascript
+    Route::post('/cart/add-js', 'AddCartForJS')->name('cart.add.js');
+
+    Route::post('/cart/delete-js', 'DeleteCartForJS')->name('cart.delete.js');
+    // Cart Add by Product Details
+    Route::post('/cart/store', 'StoreCart')->name('cart.store');
+    //list cart product
+    Route::get('cart', 'ListCart')->name('cart');
+
+
+});
+
+
+/// Auth customers
+
+/// User Profile Auth
+Route::middleware('auth')->group(function () {
+    Route::controller(FrOrderController::class)->group(function (){
+        Route::get('/checkout', 'Checkout')->name('checkout');
+
+        // Check out 
+        Route::post('/checkout-store', 'CheckoutStore' )->name('checkout.store');
+
+        // Tracking Order
+        Route::get('/order', 'ListOrder')->name('order');
+        // Tracking Order
+        Route::get('/order-details/{code}', 'OrderDetails')->name('order.details');
+
+        Route::get('/tracking', 'TrackingOrder')->name('tracking');
+
+    });
+});

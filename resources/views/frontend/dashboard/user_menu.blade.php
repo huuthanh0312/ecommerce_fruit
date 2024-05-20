@@ -19,24 +19,23 @@
     <div class="card-body p-0">
         <ul class="list-group list-group-flush rounded-3 center" >
             <li class="list-group-item d-flex  align-items-center p-3">
-                
-                <a href="{{route('dashboard')}}"><i class="fab fa-github fa-lg text-warning"></i> User Dashboard</a>
+                <a href="{{route('dashboard')}}">Trang Chủ</a>
             </li>
             <li class="list-group-item d-flex align-items-center p-3">
                 
-                <a href=""> <i class="fab fa-first-order fa-lg"></i>Order Details </a>
+                <a href="{{route('order')}}"> Danh Sách Đơn Hàng</a>
             </li>
             <li class="list-group-item d-flex align-items-center p-3">
                 
-                <a href="{{route('user.profile')}}"><i class="fa fa-user fa-lg "></i> User Profile </a>
+                <a href="{{route('user.profile')}}"> Thông Tin Tài Khoản </a>
             </li>
             <li class="list-group-item d-flex align-items-center p-3">
                 
-                <a href="{{route('user.change.password')}}"><i class="fa fa-key fa-lg "></i> Change Password</a>
+                <a href="{{route('user.change.password')}}"> Thay Đổi Mật Khẩu</a>
             </li>                           
             <li class="list-group-item d-flex align-items-center p-3">
                 
-                <a href="{{route('user.logout')}}" class="text-danger"><i class="fas fa-map-marker-alt fa-lg" ></i> Logout </a>
+                <a href="{{route('user.logout')}}" class="text-danger"> Logout </a>
             </li>
         </ul>
     </div>

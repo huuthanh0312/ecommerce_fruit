@@ -1,41 +1,29 @@
-<div class="container-fluid py-5 mb-5 hero-header">
+<div class="container-fluid banner bg-secondary my-5" style="margin-top: 152px !important;">
     <div class="container py-5">
-        <div class="row g-5 align-items-center">
-            <div class="col-md-12 col-lg-7">
-                <h4 class="mb-3 text-secondary">100% Organic Foods</h4>
-                <h1 class="mb-5 display-3 text-primary">Organic Veggies & Fruits Foods</h1>
-                <div class="position-relative mx-auto">
-                    <input class="form-control border-2 border-secondary w-75 py-3 px-4 rounded-pill" type="number"
-                        placeholder="Search">
-                    <button type="submit"
-                        class="btn btn-primary border-2 border-secondary py-3 px-4 position-absolute rounded-pill text-white h-100"
-                        style="top: 0; right: 25%;">Submit Now</button>
+        <div class="row g-4 align-items-center">
+            <div class="col-lg-6">
+                <div class="py-4">
+                    <h1 class="display-3 text-white">Trái Cây Tươi Ngon Mỗi Ngày</h1>
+                    <p class="mb-4 text-dark">
+                    <h3 class="text-primary">Thanh Fruit</h3> là thương hiệu trái cây tươi chất
+                    lượng cao, với đa dạng sản phẩm phục vụ mọi nhu cầu:
+                    đặc sản vùng miền, trái cây nhập khẩu, quà tặng trái cây, mâm ngũ quả, nước ép, và trái cây sấy.
+                    </p>
+                    <a href="{{route('products')}}"
+                        class="banner-btn btn border-2 border-white rounded-pill text-dark py-3 px-5">Mua Ngay</a>
                 </div>
             </div>
-            <div class="col-md-12 col-lg-5">
-                <div id="carouselId" class="carousel slide position-relative" data-bs-ride="carousel">
-                    <div class="carousel-inner" role="listbox">
-                        <div class="carousel-item active rounded">
-                            <img src="{{asset('frontend/img/hero-img-1.png')}}"
-                                class="img-fluid w-100 h-100 bg-secondary rounded" alt="First slide">
-                            <a href="#" class="btn px-4 py-2 text-white rounded">Fruites</a>
-                        </div>
-                        <div class="carousel-item rounded">
-                            <img src="{{asset('frontend/img/hero-img-2.jpg')}}" class="img-fluid w-100 h-100 rounded"
-                                alt="Second slide">
-                            <a href="#" class="btn px-4 py-2 text-white rounded">Vesitables</a>
+            <div class="col-lg-6">
+                <div class="position-relative">
+                    <img src="{{asset('frontend/img/baner-1.png')}}" class="img-fluid w-100 rounded" alt="">
+                    <div class="d-flex align-items-center justify-content-center bg-white rounded-circle position-absolute"
+                        style="width: 140px; height: 140px; top: 0; left: 0;">
+
+                        <div class="d-flex flex-column center p-2">
+                            <span class="h3 mb-0">Trái Cây</span>
+
                         </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselId"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselId"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
                 </div>
             </div>
         </div>

@@ -6,13 +6,11 @@ $id = Auth::user()->id;
 $profileData = App\Models\User::find($id);
 @endphp
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
 <!-- Single Page Header start -->
 <div class="container-fluid page-header py-5">
-    <h1 class="text-center text-white display-6">Profile Dashboard</h1>
     <ol class="breadcrumb justify-content-center mb-0">
-        <li class="breadcrumb-item"><a href="{{ url('/')}}">Home</a></li>
-        <li class="breadcrumb-item"><a href="#">Profile</a></li>
+        <li class="breadcrumb-item"><a href="{{ url('/')}}"><h2>Trang Chủ</h2></a></li>
+        <li class="breadcrumb-item">Tài Khoản</li>
     </ol>
 </div>
 <!-- Single Page Header End -->
@@ -35,14 +33,14 @@ $profileData = App\Models\User::find($id);
                                     <div class="billing-details">
                                         <h3 class="title">User Profile </h3>
                                         <div class="row">
-                                            <div class="col-lg-6 col-md-6">
+                                            <div class="col-md-6 mb-2">
                                                 <div class="form-group">
                                                     <label> Name <span class="required">*</span></label>
                                                     <input type="text" name="name" class="form-control"
                                                         value="{{ $profileData->name}}">
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6 col-md-6">
+                                            <div class="col-md-6 mb-2">
                                                 <div class="form-group">
                                                     <label>Email <span class="required">*</span></label>
                                                     <input type="email" name="email" class="form-control"
@@ -50,14 +48,14 @@ $profileData = App\Models\User::find($id);
                                                 </div>
                                             </div>
 
-                                            <div class="col-lg-6 col-md-6">
+                                            <div class="col-md-6 mb-2">
                                                 <div class="form-group">
                                                     <label>Address <span class="required">*</span></label>
                                                     <input type="text" name="address" class="form-control"
                                                         value="{{ $profileData->address}}">
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6 col-md-6">
+                                            <div class="col-md-6 mb-2">
                                                 <div class="form-group">
                                                     <label>Phone<span class="required">*</span></label>
                                                     <input type="text" name="phone" class="form-control"
@@ -65,21 +63,21 @@ $profileData = App\Models\User::find($id);
                                                 </div>
                                             </div>
 
-                                            <div class="col-lg-12 col-md-6">
+                                            <div class="col-md-12 mb-2">
                                                 <div class="form-group">
                                                     <label>User Profile <span class="required">*</span></label>
                                                     <input type="file" class="form-control" name="photo" id="image">
                                                 </div>
                                             </div>
-                                            <div class="col-lg-12 col-md- pb-4">
+                                            <div class="col-md-12 mb-2">
                                                 <img id="showImage"
                                                     src="{{(!empty($profileData->photo)) ? url($profileData->photo) : url('upload/no_image.jpg')}}"
                                                     alt="Admin" class="rounded-circle p-1 bg-primary" width="80">
                                             </div>
-                                            <br>
-                                            <br>
-                                            <button type="submit" name="submit" class="btn btn-danger">Save Changes
-                                            </button>
+                                            <div class="col-md-12 mb-2">
+                                                <button type="submit" name="submit" class="btn btn-danger">Save Changes
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
