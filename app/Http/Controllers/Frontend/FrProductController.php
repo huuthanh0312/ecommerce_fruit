@@ -14,14 +14,14 @@ class FrProductController extends Controller
     //
     public function ProductByCategory($slug){
         $category_by_product = Category::where('category_name_slug', $slug)->first();
-        $products = Product::where('category_id', $category_by_product->id)->orderBy('id', 'asc')->get();
+        $products = Product::where('category_id', $category_by_product->id)->orderBy('id', 'asc')->get()->paginate(9);
         $product_hot_news = Product::where('hot_new', 1)->limit(4)->get();
         $product_hot_deals = Product::where('hot_deal', 1)->limit(4)->get();
         $categories  = Category::all();
         return view('frontend.product.product_by_category', compact('products','category_by_product', 'categories','product_hot_news','product_hot_deals'));
     }
     public function AllProduct(){
-        $products = Product::all();
+        $products = Product::latest()->paginate(9);
         $product_hot_news = Product::where('hot_new', 1)->limit(4)->get();
         $product_hot_deals = Product::where('hot_deal', 1)->limit(4)->get();
         $categories  = Category::all();
@@ -83,8 +83,8 @@ class FrProductController extends Controller
         $qty = $request->qty;
         $product = Product::find($id);
         if(Auth::check()){
-            $cart_check = ModelsCart::where('product_id', $id)->first();
-            if($cart_check->product_id == $id){
+            $cart_check = ModelsCart::where('user_id', Auth::user()->id)->where('product_id', $id)->first();
+            if(!empty($cart_check)){
                 $cart_check->qty += $cart_check->qty + $qty;
                 $cart_check->save();
             } else {
@@ -111,7 +111,7 @@ class FrProductController extends Controller
                 'message'=> ' Add Product Successfully',
                 'alert-type' => 'success'
             );
-            return redirect()->route('cart.list')->with($notification);
+            return redirect()->route('cart')->with($notification);
     }
 
     public function UpdateCartForJS(Request $request){
@@ -120,7 +120,7 @@ class FrProductController extends Controller
         $rowId = $request->rowId;
         $product = Product::find($id);
         if(Auth::check()){
-            $cart_check = ModelsCart::where('product_id', $id)->first();
+            $cart_check = ModelsCart::where('user_id', Auth::user()->id)->where('product_id', $id)->first();
             if(!empty($cart_check)){
                 $cart_check->qty = $qty;
                 $cart_check->save();

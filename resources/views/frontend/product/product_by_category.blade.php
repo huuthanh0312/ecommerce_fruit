@@ -22,7 +22,7 @@
             </div>
             <hr>
             <div class="col-lg-12">
-                <div class="row g-4">
+                {{-- <div class="row g-4">
                     <div class="col-xl-3">
                         <div class="input-group w-100 mx-auto d-flex">
                             <input type="search" class="form-control p-3" placeholder="keywords"
@@ -43,7 +43,7 @@
                             </select>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <div class="row g-4">
                     <div class="col-lg-3">
                         <div class="row g-4">
@@ -156,14 +156,7 @@
                             @endforeach
                             <div class="col-12">
                                 <div class="pagination d-flex justify-content-center mt-5">
-                                    <a href="#" class="rounded">&laquo;</a>
-                                    <a href="#" class="active rounded">1</a>
-                                    <a href="#" class="rounded">2</a>
-                                    <a href="#" class="rounded">3</a>
-                                    <a href="#" class="rounded">4</a>
-                                    <a href="#" class="rounded">5</a>
-                                    <a href="#" class="rounded">6</a>
-                                    <a href="#" class="rounded">&raquo;</a>
+                                    {{$products->links('vendor.pagination.custom')}}
                                 </div>
                             </div>
                         </div>
