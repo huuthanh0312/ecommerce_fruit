@@ -182,6 +182,8 @@ Route::controller(FrProductController::class)->group(function (){
     // Cart Add get Javascript
     Route::post('/cart/add-js', 'AddCartForJS')->name('cart.add.js');
 
+    Route::post('/cart/update-js', 'UpdateCartForJS')->name('cart.update.js');
+
     Route::post('/cart/delete-js', 'DeleteCartForJS')->name('cart.delete.js');
     // Cart Add by Product Details
     Route::post('/cart/store', 'StoreCart')->name('cart.store');

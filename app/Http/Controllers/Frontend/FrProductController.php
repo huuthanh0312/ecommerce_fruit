@@ -36,30 +36,29 @@ class FrProductController extends Controller
     }
 
     public function AddCartForJS(Request $request){
-        $id = $request->input('id');
-        $product = Product::find($id);
-        
-        if(Auth::check()){
-            $cart_check = ModelsCart::where('product_id', $id)->first();
-            
-            if(empty($cart_check)){
+        $product_id = $request->input('id');
+        $product = Product::find($product_id);
+        $user_id = Auth::user()->id;
+        if(!empty($user_id)){
+            $check_cart = ModelsCart::where('user_id', $user_id)
+                                            ->where('product_id', $product_id)->first();
+            if(!empty($check_cart)){
+                $check_cart->qty += 1;
+                $check_cart->update();
+                
+            } else{  
                 $cart_user = new ModelsCart();
-                $cart_user->user_id = Auth::user()->id;
-                $cart_user->product_id = $id;
+                $cart_user->user_id = $user_id;
+                $cart_user->product_id = $product_id;
                 $cart_user->name = $product->product_name;
                 $cart_user->qty = 1;
                 $cart_user->price = $product->price;
                 $cart_user->image = $product->image;
-                
-            } elseif($cart_check->product_id == $id) {
-                $cart_check->qty += 1;
-                $cart_check->update();
+                $cart_user->save();
             }
-            
-
         }
         Cart::add([
-            'id' => $id,
+            'id' => $product_id,
             'name' => $product->product_name,
             'qty' => 1, 
             'price' => $product->price, 
@@ -78,6 +77,7 @@ class FrProductController extends Controller
         return view('frontend.order.cart_ajax', compact('countCart', 'carts', 'totalPrice'));
     }
 
+
     public function StoreCart(Request $request){
         $id = $request->id;
         $qty = $request->qty;
@@ -86,6 +86,7 @@ class FrProductController extends Controller
             $cart_check = ModelsCart::where('product_id', $id)->first();
             if($cart_check->product_id == $id){
                 $cart_check->qty += $cart_check->qty + $qty;
+                $cart_check->save();
             } else {
                 $cart_user = new ModelsCart();
                 $cart_user->user_id = Auth::user()->id;
@@ -94,9 +95,8 @@ class FrProductController extends Controller
                 $cart_user->qty = $qty;
                 $cart_user->price = $product->price;
                 $cart_user->image = $product->image;
+                $cart_user->save();
             }
-            
-
         }
         Cart::add([
             'id' => $id,
@@ -114,6 +114,30 @@ class FrProductController extends Controller
             return redirect()->route('cart.list')->with($notification);
     }
 
+    public function UpdateCartForJS(Request $request){
+        $id = $request->id;
+        $qty = $request->qty;
+        $rowId = $request->rowId;
+        $product = Product::find($id);
+        if(Auth::check()){
+            $cart_check = ModelsCart::where('product_id', $id)->first();
+            if(!empty($cart_check)){
+                $cart_check->qty = $qty;
+                $cart_check->save();
+                Cart::update($rowId, $qty);
+            } 
+        }
+        $countCart = 0;
+        $carts = Cart::content();
+        foreach($carts as $cart){
+            $countCart += $cart->qty;
+        }
+        $product_cart = Cart::get($rowId);
+        $total_price = $product_cart->qty * $product_cart->price;
+        
+        $sub_total = Cart::subtotal();
+        return response()->json(['countCart'=> $countCart, 'sub_total'=>$sub_total, 'total_price' => $total_price]);
+    }
     public function DeleteCartForJs(Request $request){
         $id = $request->id;
         $rowId = $request->rowId;

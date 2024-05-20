@@ -57,21 +57,23 @@
                                 <td>
                                     <div class="input-group quantity mt-4" style="width: 100px;">
                                         <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-minus rounded-circle bg-light border">
+                                            <button class="btn btn-sm btn-minus rounded-circle bg-light border" data-product-id="{{$cart->id}}" data-comment-id="{{$cart->rowId}}">
                                                 <i class="fa fa-minus"></i>
                                             </button>
                                         </div>
                                         <input type="text" class="form-control form-control-sm text-center border-0"
-                                            value="{{$cart->qty}}">
+                                            value="{{$cart->qty}}" >
                                         <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-plus rounded-circle bg-light border">
+                                            <button class="btn btn-sm btn-plus rounded-circle bg-light border" data-product-id="{{$cart->id}}" data-comment-id="{{$cart->rowId}}">
                                                 <i class="fa fa-plus"></i>
                                             </button>
                                         </div>
                                     </div>
                                 </td>
                                 <td>
-                                    <p class="mb-0 mt-4">{{number_format($cart->subtotal, 0, '.', ',')}} VND</p>
+                                    <p class="mb-0 mt-4">
+                                        <span class="total_price_product{{$cart->id}}">{{number_format($cart->subtotal, 0, '.', ',')}}</span> VND
+                                    </p>
                                 </td>
                                 <td>
                                     <button id="deleteCart" data-product-id="{{$cart->id}}" data-comment-id="{{$cart->rowId}}"
@@ -101,7 +103,7 @@
                     @endphp
                     <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
                         <h5 class="mb-0 ps-4 me-4">Tổng Tiền</h5>
-                        <p class="mb-0 pe-4 text-danger"><span class="sub_total"> {{number_format($subtotal, 0)}}</span> VND</p>
+                        <p class="mb-0 pe-4 text-danger"><span class="sub_total">{{number_format($subtotal, 0)}}</span> VND</p>
                     </div>
                     <div class="center justify-content-between">
                         <ul>

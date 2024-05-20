@@ -63,14 +63,22 @@ class AuthenticatedSessionController extends Controller
 
             $carts = Cart::content();
             if(!empty($carts)){
-
                 foreach($carts as $cart){
                     $check_cart = ModelsCart::where('user_id',$request->user()->id)
                                             ->where('product_id', $cart->id)->first();
                     if(!empty($check_cart) ){
                         $check_cart->qty = $check_cart->qty + $cart->qty;
                         $check_cart->save();                  
-                    } 
+                    }  else{
+                        $cart_user = new ModelsCart();
+                        $cart_user->user_id = $id;
+                        $cart_user->product_id = $cart->id;
+                        $cart_user->name = $cart->name;
+                        $cart_user->qty = $cart->qty;
+                        $cart_user->price = $cart->price;
+                        $cart_user->image = $cart->options->image;
+                        $cart_user->save();
+                    }
                 }
                 Cart::destroy();
             }          

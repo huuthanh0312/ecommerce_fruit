@@ -143,6 +143,50 @@
             })
                 
         });
+
+        // Product Quantity
+        $(document).delegate(".quantity button","click",function(){
+            var button = $(this);
+            var oldValue = button.parent().parent().find('input').val();
+            if (button.hasClass('btn-plus')) {
+                var newVal = parseFloat(oldValue) + 1;
+            } else {
+                if (oldValue > 1) {
+                    var newVal = parseFloat(oldValue) - 1;
+                } else {
+                    newVal = 0;
+                }
+            }
+
+            button.parent().parent().find('input').val(newVal);
+            if(newVal > 0){
+                var rowId = $(this).data('comment-id');
+                var id = $(this).data('product-id');
+                
+                    $.ajax({
+                    url: "{{route('cart.update.js')}}",
+                    method: 'POST',
+                    data: {id: id, rowId: rowId, qty: newVal, _token: "{{csrf_token()}}"},
+                    success: function(data){
+                                            
+                        $("#countCart").html(data['countCart']);
+                        $(".sub_total").html(data['sub_total']);
+                        var name_total_price_product = '.total_price_product'+id;    
+                        $(name_total_price_product).html(data['total_price']);                        
+                    },
+                    error: function(error){
+                        toastr.error('Error Update Product Faild');
+                    }
+                    })
+                 
+                
+            }else{
+                button.parent().parent().find('input').val(1);
+                toastr.warning('Can not update product!');
+            }
+            
+        });
+
     </script>
 </body>
 
