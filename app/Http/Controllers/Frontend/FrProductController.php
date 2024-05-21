@@ -14,7 +14,7 @@ class FrProductController extends Controller
     //
     public function ProductByCategory($slug){
         $category_by_product = Category::where('category_name_slug', $slug)->first();
-        $products = Product::where('category_id', $category_by_product->id)->orderBy('id', 'asc')->get()->paginate(9);
+        $products = Product::where('category_id', $category_by_product->id)->orderBy('id', 'asc')->paginate(9);
         $product_hot_news = Product::where('hot_new', 1)->limit(4)->get();
         $product_hot_deals = Product::where('hot_deal', 1)->limit(4)->get();
         $categories  = Category::all();
@@ -38,8 +38,9 @@ class FrProductController extends Controller
     public function AddCartForJS(Request $request){
         $product_id = $request->input('id');
         $product = Product::find($product_id);
-        $user_id = Auth::user()->id;
-        if(!empty($user_id)){
+        
+        if(!empty(Auth::user()->id)){
+            $user_id = Auth::user()->id;
             $check_cart = ModelsCart::where('user_id', $user_id)
                                             ->where('product_id', $product_id)->first();
             if(!empty($check_cart)){
@@ -127,6 +128,7 @@ class FrProductController extends Controller
                 Cart::update($rowId, $qty);
             } 
         }
+        Cart::update($rowId, $qty);
         $countCart = 0;
         $carts = Cart::content();
         foreach($carts as $cart){

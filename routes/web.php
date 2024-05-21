@@ -204,6 +204,8 @@ Route::middleware('auth')->group(function () {
         // Check out 
         Route::post('/checkout-store', 'CheckoutStore' )->name('checkout.store');
 
+        Route::match(['get', 'post'],'/stripe_pay', [FrOrderController::class, 'stripe_pay'])->name('stripe_pay');
+
         // Tracking Order
         Route::get('/order', 'ListOrder')->name('order');
         // Tracking Order

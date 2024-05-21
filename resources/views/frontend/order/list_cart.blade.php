@@ -61,7 +61,7 @@
                                                 <i class="fa fa-minus"></i>
                                             </button>
                                         </div>
-                                        <input type="text" class="form-control form-control-sm text-center border-0"
+                                        <input type="text" class="form-control form-control-sm text-center border-0 number_cart{{$cart->id}}"
                                             value="{{$cart->qty}}" >
                                         <div class="input-group-btn">
                                             <button class="btn btn-sm btn-plus rounded-circle bg-light border" data-product-id="{{$cart->id}}" data-comment-id="{{$cart->rowId}}">

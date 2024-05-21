@@ -13,6 +13,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Auth;
 use Carbon\Carbon;
+use Stripe;
 class FrOrderController extends Controller
 {
     //
@@ -40,27 +41,32 @@ class FrOrderController extends Controller
         $total_price = (Cart::Subtotal());
         //dd($total_price);
         $code = rand(000000000, 999999999);
-    
         $data = new Order();
        
         $data->user_id = Auth::user()->id;
         $data->total_price = $total_price;
         $data->payment_method = $request->payment_method;
+        $amount = $total_price / 25000;
+
         if($request->payment_method == 'Stripe'){
-            // Stripe\Stripe::setApiKey(ENV('STRIPE_SECRET'));
-            // $s_pay = Stripe\Charge::create([
-            //     "amount" => $total_price * 100,
-            //     "currency" => "usd",
-            //     "source" => $request->stripeToken,
-            //     "description" => "Payment For Booking. Booking No ".$code,
-            // ]);
-            // if($s_pay['status'] == 'succeeded'){
-            //     $data->transaction_id = $s_pay->id;
-            //     $data->payment_status = 1;
-            // }
+            Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+           
+            $s_pay = Stripe\Charge::create([
+                "amount" => $amount,
+                "currency" => "usd",
+                "source" => $request->stripeToken,
+                "description" => "Payment For Booking. Booking No ".$code,
+            ]);
+            if($s_pay['status'] == 'succeeded'){
+                $data->transaction_id = $s_pay->id;
+                $data->payment_status = 1;
+            }
+        }elseif($request->payment_method == 'Paypal'){
+            $data->transaction_id = $request->transaction_id;
+            $data->payment_status = 1;
         }else{
             $data->transaction_id = '';
-            $data->payment_status = 0;
+                $data->payment_status = 0;
         }
        
         $data->name = $request->name;

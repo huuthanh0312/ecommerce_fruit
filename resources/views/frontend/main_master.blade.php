@@ -77,6 +77,7 @@
 
     <!-- Template Javascript -->
     <script src="{{asset('frontend/js/main.js')}}"></script>
+    <script src="{{ asset('backend/assets/js/validate.min.js') }}"></script>
     <!--Notification-->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
@@ -158,7 +159,6 @@
                 }
             }
 
-            button.parent().parent().find('input').val(newVal);
             if(newVal > 0){
                 var rowId = $(this).data('comment-id');
                 var id = $(this).data('product-id');
@@ -168,9 +168,13 @@
                     method: 'POST',
                     data: {id: id, rowId: rowId, qty: newVal, _token: "{{csrf_token()}}"},
                     success: function(data){
-                                            
+
+                        var number_cart_product = '.number_cart'+id; 
+                        $(number_cart_product).val(newVal);  
+
                         $("#countCart").html(data['countCart']);
                         $(".sub_total").html(data['sub_total']);
+
                         var name_total_price_product = '.total_price_product'+id;    
                         $(name_total_price_product).html(data['total_price']);                        
                     },
