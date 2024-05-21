@@ -32,7 +32,7 @@
                             <th>Email</th>
                             <th>Message</th>
                             <th>Time</th>
-                            <th>Action</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -42,15 +42,9 @@
                             <td>{{ $key +1 }}</td>
                             <td>{{$item->name}}</td>
                             <td>{{$item->email}}</td>
-                            <td>{{Str::limit($item->message, 25)}}</td>
+                            <td>{{Str::limit($item->message, 30)}}</td>
                             <td>{{Carbon\Carbon::parse($item->created_at)->diffForHumans()}}</td>
-                            <td>
-                                <button data-bs-toggle="modal" data-bs-target="#contact_show" id="{{$item->id}}"
-                                    onclick="contactShow(this.id)"
-                                    class="btn btn-outline-warning px-5 radius-30">Show</button>
-                                <a href="{{ route('category.delete', $item->id)}}" id="delete"
-                                    class="btn btn-outline-danger px-5 radius-30">Delete</a>
-                            </td>
+                            
                         </tr>
                         @endforeach
                     </tbody>

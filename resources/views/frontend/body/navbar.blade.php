@@ -3,8 +3,9 @@ $categories = App\Models\Category::orderBy('id', 'asc')->get();
 $carts = Cart::content();
 $countCart = 0;
 foreach($carts as $cart){
-$countCart += $cart->qty;
+    $countCart += $cart->qty;
 }
+$site = App\Models\SiteSetting::find(1);
 @endphp
 
 
@@ -13,11 +14,11 @@ $countCart += $cart->qty;
         <div class="d-flex justify-content-between">
             <div class="top-info ps-2">
                 <small class="me-3"><i class="fas fa-map-marker-alt me-2 text-secondary"></i> <a href="#"
-                        class="text-white">127 Trường Chinh, Thành Phố Huế, Thừa Thiên Huế</a></small>
+                        class="text-white">{{$site->address}}</a></small>
             </div>
             <div class="top-link pe-2">
                 <small class="me-3"><i class="fas fa-envelope me-2 text-secondary"></i><a href="#"
-                        class="text-white">huuthanhnguyen0312@gmail.com</a></small>
+                        class="text-white">{{$site->email}}</a></small>
 
             </div>
         </div>
@@ -47,8 +48,8 @@ $countCart += $cart->qty;
 
                         </div>
                     </div>
-                    <a href="contact.html" class="nav-item nav-link">Thuơng Hiệu</a>
-                    <a href="contact.html" class="nav-item nav-link">Liên Hệ</a>
+                    <a href="{{route('about')}}" class="nav-item nav-link">Thương Hiệu</a>
+                    <a href="{{route('contact')}}" class="nav-item nav-link">Liên Hệ</a>
                 </div>
                 <div class="d-flex m-3 me-0">
                     <button class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4"
@@ -71,7 +72,7 @@ $countCart += $cart->qty;
                                 <i class="fas fa-user " style="font-size: 1.5rem;"></i> </a>
                             <div class="dropdown-menu m-0 bg-secondary rounded-0">
                                 <h5 class="dropdown-item">{{Auth::user()->name}}</h5>
-                                <a href="{{route('dashboard')}}" class="dropdown-item">Dashboard
+                                <a href="{{route('dashboard')}}" class="dropdown-item">Tài Khoản
                                 </a>
                                 <a href="{{route('user.logout')}}" class="dropdown-item">Logout</a>
                             </div>

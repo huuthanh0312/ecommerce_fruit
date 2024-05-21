@@ -11,14 +11,14 @@ class SiteSettingController extends Controller
 {
     // SiteSetting Methods
     public function ShowSiteSetting(){
-        $site_setting = SiteSetting::findOrNew(1);
+        $site_setting = SiteSetting::find(1);
         return view('backend.site_setting.show_site_setting', compact('site_setting'));
     }//end methods
 
       // Add Data SiteSetting 
     public function UpdateSiteSetting(Request $request){ 
     
-        SiteSetting:: find($request->id)->update([
+        SiteSetting::find($request->id)->update([
             'phone'=> $request->phone,
             'email'=> $request->email,
             'address'=> $request->address,

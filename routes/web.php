@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SiteSettingController;
 use App\Http\Controllers\Backend\SmtpSettingController;
+use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\FrOrderController;
 use App\Http\Controllers\Frontend\FrProductController;
 use App\Http\Controllers\ProfileController;
@@ -171,6 +172,17 @@ Route::middleware(['auth', 'roles:admin'])->group(function (){
 
 
 //frontend routes
+Route::controller(FrontendController::class)->group(function (){
+    Route::get('about', 'About')->name('about');
+
+    Route::get('policy/{slug}', 'Policy')->name('policy');
+
+    Route::get('contact', 'Contact')->name('contact');
+
+    Route::post('contact/store', 'ContactStore')->name('contact.store');
+
+});
+ 
 Route::controller(FrProductController::class)->group(function (){
     // get Product By Category
     Route::get('/category/{slug}', 'ProductByCategory')->name('category.product');
