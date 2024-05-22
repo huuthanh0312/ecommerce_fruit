@@ -37,6 +37,7 @@ class FrProductController extends Controller
 
     public function AddCartForJS(Request $request){
         $product_id = $request->input('id');
+        $qty = $request->input('qty');
         $product = Product::find($product_id);
         
         if(!empty(Auth::user()->id)){
@@ -44,7 +45,7 @@ class FrProductController extends Controller
             $check_cart = ModelsCart::where('user_id', $user_id)
                                             ->where('product_id', $product_id)->first();
             if(!empty($check_cart)){
-                $check_cart->qty += 1;
+                $check_cart->qty +=  $qty;
                 $check_cart->update();
                 
             } else{  
@@ -61,7 +62,7 @@ class FrProductController extends Controller
         Cart::add([
             'id' => $product_id,
             'name' => $product->product_name,
-            'qty' => 1, 
+            'qty' =>  $qty, 
             'price' => $product->price, 
             'options' => [
                 'image' => $product->image,

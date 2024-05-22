@@ -59,9 +59,9 @@
                                         </button>
                                     </div>
                                     <input type="text" class="form-control form-control-sm text-center border-0"
-                                        value="1" name="qty" min="1">
+                                        value="1" name="qty" min="1" id="qtyProduct">
                                     <div class="input-group-btn">
-                                        <button type="button"
+                                        <button type="button" data-max-id="{{$product->quantity}}"
                                             class="btn btn-sm btn-plus rounded-circle bg-light border">
                                             <i class="fa fa-plus"></i>
                                         </button>
@@ -70,7 +70,10 @@
                         </div>
                         <button type="submit"
                             class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i
-                                class="fa fa-shopping-cart me-2 text-primary"></i> Mua Ngay</button>
+                                class="fas fa-apple-alt me-2 text-primary"></i> Mua Ngay</button>
+                        <button onclick="addCart({{$product->id}})" type="button"
+                                class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary">
+                                <i class="fa fa-shopping-cart me-2 text-primary"></i> Thêm Vào Giỏ Hàng</button>
                         </form>
 
                     </div>

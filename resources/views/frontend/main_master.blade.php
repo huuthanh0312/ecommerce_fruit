@@ -110,13 +110,19 @@
 
     <script>
         function addCart(id){
+                var qty = $('#qtyProduct').val();
+                if(qty == null){
+                    qty = 1;
+                }
+                
                 $.ajax({
                     url: "{{route('cart.add.js')}}",
                     method: 'POST',
-                    data: {id: id, _token: "{{csrf_token()}}"},
+                    data: {id: id, qty: qty, _token: "{{csrf_token()}}"},
                     success: function(data){
                         toastr.success('Add Product Successfully');
-                        $(".myTable").html(data);          
+                        $(".myTable").html(data);   
+                          
                     },
                     error: function(error){
                         toastr.error('Error Add Product Faild');
@@ -149,20 +155,27 @@
         $(document).delegate(".quantity button","click",function(){
             var button = $(this);
             var oldValue = button.parent().parent().find('input').val();
-            if (button.hasClass('btn-plus')) {
-                var newVal = parseFloat(oldValue) + 1;
-            } else {
-                if (oldValue > 1) {
-                    var newVal = parseFloat(oldValue) - 1;
+            var valueMax = $(this).data('max-id');
+            if(oldValue >= valueMax) {  
+                button.parent().parent().find('input').val(valueMax);
+                toastr.error('Product Quatity Maximun');
+                return false;
+            }else{
+                if (button.hasClass('btn-plus')) {
+                    var newVal = parseFloat(oldValue) + 1;
                 } else {
-                    newVal = 0;
+                    if (oldValue > 1) {
+                        var newVal = parseFloat(oldValue) - 1;
+                    } else {
+                        newVal = 0;
+                    }
                 }
             }
-
-            if(newVal > 0){
-                var rowId = $(this).data('comment-id');
-                var id = $(this).data('product-id');
-                
+           
+            var rowId = $(this).data('comment-id');
+            var id = $(this).data('product-id');
+            if(rowId != null && id != null) {
+                if(newVal > 0){
                     $.ajax({
                     url: "{{route('cart.update.js')}}",
                     method: 'POST',
@@ -176,18 +189,26 @@
                         $(".sub_total").html(data['sub_total']);
 
                         var name_total_price_product = '.total_price_product'+id;    
-                        $(name_total_price_product).html(data['total_price']);                        
+                        $(name_total_price_product).html(data['total_price']);         
+                        button.parent().parent().find('input').val(newVal);               
                     },
                     error: function(error){
                         toastr.error('Error Update Product Faild');
                     }
                     })
-                 
+                }else{
+                    button.parent().parent().find('input').val(1);
+                    toastr.warning('Can not update product!');
+                }
+            } else{
+                if(newVal == 0){
+                    button.parent().parent().find('input').val(1);
+                }else{
+                    button.parent().parent().find('input').val(newVal);
+                }
                 
-            }else{
-                button.parent().parent().find('input').val(1);
-                toastr.warning('Can not update product!');
             }
+            
             
         });
 

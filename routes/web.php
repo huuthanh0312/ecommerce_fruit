@@ -113,6 +113,10 @@ Route::middleware(['auth', 'roles:admin'])->group(function (){
             Route::get('/order/details/{code}', 'OrderDetailsStatus' )->name('order.get');
     
             Route::post('/order/details/status', 'UpdateOrderStatus' )->name('order.update.status');
+
+            // Route::get('tracking' , 'Tracking')->name('tracking');
+
+            // Route::post('order/tracking' , 'OrderTracking')->name('tracking.search');
     
         });
         // Customer Routes

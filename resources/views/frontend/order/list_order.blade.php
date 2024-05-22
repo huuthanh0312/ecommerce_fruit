@@ -3,8 +3,10 @@
 <!-- Single Page Header start -->
 <div class="container-fluid page-header py-5">
     <ol class="breadcrumb justify-content-center mb-0">
-        <li class="breadcrumb-item"><a href="{{ url('/')}}">Trang Chủ</a></li>
-        <li class="breadcrumb-item">Tài Khoản</li>
+        <li class="breadcrumb-item">
+            <h5><a href="{{url('/')}}">Trang Chủ</a></h5>
+        </li>
+        <li class="breadcrumb-item active text-white">Tài Khoản</li>
     </ol>
 </div>
 <!-- Single Page Header End -->
@@ -33,6 +35,7 @@
                                             <th scope="col">Tổng Tiền</th>
                                             <th scope="col">PT Thanh Toán</th>
                                             <th scope="col">Trạng Thái ĐH</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -47,14 +50,19 @@
                                             <td>{{$item->payment_method}}</td>
                                             <td>
                                                 @if ($item->status == 0)
-                                                    <span class="badge bg-label-danger me-1">Từ Chối ĐH</span>
+                                                    <span class="badge bg-danger me-1">Từ Chối ĐH</span>
                                                 @elseif($item->status == 1)
-                                                    <span class="badge bg-label-primary me-1">Chờ Xác Nhận</span>
+                                                    <span class="badge bg-warning me-1">Chờ Xác Nhận</span>
                                                 @elseif($item->status == 2)
-                                                    <span class="badge bg-label-primary me-1">Đang Giao Hàng</span>
+                                                    <span class="badge bg-primary me-1">Đang Giao Hàng</span>
                                                 @elseif($item->status == 3)
-                                                    <span class="badge bg-label-success me-1">Hoàn Thành</span>
+                                                    <span class="badge bg-success me-1">Hoàn Thành</span>
                                                 @endif
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-outline-primary radius-30" title="Xem Đơn Hàng" href="{{route('order.details', $item->code)}}">
+                                                <i class="fas fa-eye"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                         @endforeach

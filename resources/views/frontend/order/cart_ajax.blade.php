@@ -20,7 +20,7 @@
                 </div>
             </th>
             <td>
-                <p class="mb-0 mt-4">{{$cart->name}}</p>
+                <p class="mb-0 mt-4">{{Str::limit($cart->name, 20)}}</p>
             </td>
             <td>
                 <p class="mb-0 mt-4">{{$cart->price}}VND</p>
@@ -41,8 +41,8 @@
                 </div>
             </td>
             <td>
-                <p>
-                    <span class="mb-0 mt-4 total_price_product{{$cart->id}}">{{number_format($cart->subtotal, 0, '.', ',')}}</span> VND
+                <p class="mb-0 mt-4">
+                    <span class="total_price_product{{$cart->id}}">{{number_format($cart->subtotal, 0, '.', ',')}}</span> VND
                 </p>
             </td>
             <td>
@@ -51,9 +51,7 @@
                     <i class="fa fa-times text-danger"></i>
                 </button>
             </td>
-
-        </tr>
-        
+        </tr>       
         @endforeach
         <p >Tổng Tiền : <span class="text-primary sub_total">{{number_format($totalPrice, 0)}}</span> VND</p>
     </tbody>
@@ -73,12 +71,14 @@
     
     $("#countCart").html({{$countCart}});
     $(".sub_total").html({{$totalPrice}});
-
+    $("#dCheckout").removeClass('d-none');
+    
 </script>
 @else
 <script> 
         $("#countCart").text({{$countCart}});
         $("#total").remove();      
         $(".sub_total").text('0');  
+        $("#dCheckout").addClass('d-none');
 </script>
 @endif

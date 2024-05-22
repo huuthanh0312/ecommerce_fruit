@@ -130,7 +130,7 @@
 
                                     </div>
                                     <div class="text-center ">
-                                        <button onclick="addCart({{$product->id}})"
+                                        <button onclick="addCart({{$product->id}})" 
                                             class="btn border border-secondary rounded-pill text-primary p-2">
                                             <i class="fa fa-shopping-cart me-2 text-primary"></i>Giỏ Hàng
                                         </button>

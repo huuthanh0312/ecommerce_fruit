@@ -26,7 +26,7 @@
                 <div class="footer-item">
                     <h4 class="text-light mb-3">Thông Tin Thương Hiệu</h4>
                     <p class="mb-4">{{$site->short_desc}}</p>
-                    <a href="" class="btn border-secondary py-2 px-4 rounded-pill text-primary">Đọc Tiếp</a>
+                    <a href="{{route('about')}}" class="btn border-secondary py-2 px-4 rounded-pill text-primary">Đọc Tiếp</a>
                 </div>
             </div>
          

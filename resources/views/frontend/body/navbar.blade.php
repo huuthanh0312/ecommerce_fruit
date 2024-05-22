@@ -126,9 +126,10 @@ $site = App\Models\SiteSetting::find(1);
                     aria-label="Close">
                     <span class="" aria-hidden="true">&times;</span></button>
                 <div>
-                    <h5 class="text-uppercase btn btn-outline-warning"><a href="{{route('cart')}}">Đến Giỏ Hàng</a></h5>
-                    <h5 class="text-uppercase btn btn-outline-primary"><a href="{{route('checkout')}}">Thanh Toán</a>
-                    </h5>
+                    <a class="text-uppercase btn btn-outline-warning" href="{{route('cart')}}">Đến Giỏ Hàng</a>
+                    <a class="text-uppercase btn btn-outline-primary {{$carts->count() > 0 ? 'd-inline' : 'd-none'}}" 
+                        href="{{route('checkout')}}" id="dCheckout">Thanh Toán</a>
+                    
                 </div>
 
             </div>
@@ -157,7 +158,7 @@ $site = App\Models\SiteSetting::find(1);
                                     </div>
                                 </th>
                                 <td>
-                                    <p class="mb-0 mt-4">{{$cart->name}}</p>
+                                    <p class="mb-0 mt-4">{{Str::limit($cart->name, 20)}}</p>
                                 </td>
                                 <td>
                                     <p class="mb-0 mt-4">{{$cart->price}}VND</p>
@@ -179,8 +180,8 @@ $site = App\Models\SiteSetting::find(1);
                                     </div>
                                 </td>
                                 <td>
-                                    <p>
-                                        <span class="mb-0 mt-4 total_price_product{{$cart->id}}">{{number_format($cart->subtotal, 0, '.', ',')}}</span> VND
+                                    <p class="mb-0 mt-4">
+                                        <span class=" total_price_product{{$cart->id}}">{{number_format($cart->subtotal, 0, '.', ',')}}</span> VND
                                     </p>
                                 </td>
                                 <td>
