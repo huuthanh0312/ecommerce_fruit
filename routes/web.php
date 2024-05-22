@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\Backend\CustomerController;
+use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SiteSettingController;
@@ -101,9 +102,19 @@ Route::middleware(['auth', 'roles:admin'])->group(function (){
             Route::post('/product/update', 'UpdateProduct' )->name('product.update');
     
             Route::get('/product/delete/{id}', 'DeleteProduct' )->name('product.delete');
+
+            Route::post('/product/status', 'UpdateProductStatus' )->name('product.update.status');
     
         });
-        
+        Route::controller(OrderController::class)->group(function (){
+            //// Order CRUD
+            Route::get('/order/all', 'AllOrder' )->name('order.all');
+    
+            Route::get('/order/details/{code}', 'OrderDetailsStatus' )->name('order.get');
+    
+            Route::post('/order/details/status', 'UpdateOrderStatus' )->name('order.update.status');
+    
+        });
         // Customer Routes
         Route::controller(CustomerController::class)->group(function (){
             //// Custommer CRUD
@@ -223,7 +234,6 @@ Route::middleware('auth')->group(function () {
         // Tracking Order
         Route::get('/order-details/{code}', 'OrderDetails')->name('order.details');
 
-        Route::get('/tracking', 'TrackingOrder')->name('tracking');
 
     });
 });

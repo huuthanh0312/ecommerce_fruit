@@ -2,7 +2,11 @@
 @section('admin')
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
+<style>
+    .large-checkbox {
+        transform: scale(1.5);
+    }
+</style>
 <div class="container-xxl flex-grow-1 container-p-y">
 
     <!--breadcrumb-->
@@ -38,7 +42,7 @@
                             <th>Image</th>
                             <th>Product Name</th>
                             <th>Category</th>
-                            <th>Status</th>
+                            <<th><span class="text-primary">Active</span>/<span class="text-danger">Inactive</span></th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -52,14 +56,21 @@
                                 <img class="rounded-circle p-1 bg-primary" src="{{ (!empty($item->image)) ? url($item->image) 
                                 : url('upload/no_image.jpg')}}" width="50">
                             </td>
-                            <td>{{Str::limit($item->product_name, 25)}}</td>
+                            <td>{{Str::limit($item->product_name, 20)}}</td>
                             <td>{{$item['category']['category_name']}}</td>
-                            <td>{{$item->status}}</td>
                             <td>
-                                <a href="{{ route('product.edit', $item->id)}}"
-                                    class="btn btn-outline-warning radius-30">Edit</a>
-                                <a href="{{ route('product.delete', $item->id)}}" id="delete"
-                                    class="btn btn-outline-danger radius-30">Delete</a>
+                                <div class="form-switch center">
+                                    <input type="checkbox" class="form-check-input status-toggle large-checkbox"
+                                        id="flexSwitchCheckedDanger" data-product-id="{{$item->id}}" 
+                                        {{($item->status == 1) ? 'checked' : ''}} style="front-size: 10px;">
+
+                                </div>
+                            <td>
+                                <a href="{{ route('product.edit', $item->id)}}" title="Edit"
+                                    class="btn-outline-warning radius-30"><i class="bx bx-edit-alt me-1"></i></a>
+                                <a href="{{ route('product.delete', $item->id)}}" id="delete" title="Delete"
+                                    class="btn-outline-danger radius-30"><i class=" bx bx-trash me-1"></i></a>
+                                    
                             </td>
                         </tr>
                         @endforeach
@@ -73,6 +84,31 @@
 
 
 </div>
+<script>
+    $(document).ready(function(){
+        $('.status-toggle').on('change', function(){
+            var productId = $(this).data('product-id');
+            var isChecked = $(this).is(':checked');
+            // send ajax request to update satus 
 
+            $.ajax({
+                url: "{{route('product.update.status')}}",
+                method: 'POST',
+                data: {
+                    product_id: productId,
+                    is_checked: isChecked ? 1 : 0,
+                    _token: "{{csrf_token()}}"
+                },
+                success: function(response){
+                    toastr.success(response.message);
+                },
+                error: function(response){
+                    toastr.error(response.message);
+                }
+            })
+        })
+        
+    })
+</script>
 
 @endsection

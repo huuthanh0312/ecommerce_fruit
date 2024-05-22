@@ -53,37 +53,24 @@
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Manage Order</span></li>
         <!-- Cards -->
         <li class="menu-item">
-            <a href="cards-basic.html" class="menu-link">
+            <a href="{{route('order.all')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
                 <div data-i18n="Basic">All Order</div>
             </a>
         </li>
-        <!-- Cards -->
+        {{-- <!-- Cards -->
         <li class="menu-item">
             <a href="cards-basic.html" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
                 <div data-i18n="Basic">Add Order</div>
             </a>
-        </li>
+        </li> --}}
         <li class="menu-item">
             <a href="cards-basic.html" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
                 <div data-i18n="Basic">Tracking</div>
             </a>
-        </li>
-
-        <li class="menu-item">
-            <a href="cards-basic.html" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Basic">Report</div>
-            </a>
-        </li>
-        <li class="menu-item">
-            <a href="cards-basic.html" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Basic">Manage Status Shipping</div>
-            </a>
-        </li>
+        </li> 
         <!-- Components -->
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Manage Customers</span></li>
         <!-- Cards -->
@@ -111,6 +98,19 @@
         </li>
         <!-- Misc -->
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Setting</span></li>
+        
+        <li class="menu-item">
+            <a href="{{route('site.setting.show')}}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div data-i18n="Form Layouts">Site Settings</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="{{route('smtp.setting')}}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div data-i18n="Form Layouts">SMTP Setting</div>
+            </a>
+        </li>
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
@@ -146,19 +146,7 @@
                     </a>
                 </li>
             </ul>
-        <li class="menu-item">
-            <a href="{{route('site.setting.show')}}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-detail"></i>
-                <div data-i18n="Form Layouts">Site Settings</div>
-            </a>
         </li>
-        <li class="menu-item">
-            <a href="{{route('smtp.setting')}}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-detail"></i>
-                <div data-i18n="Form Layouts">SMTP Setting</div>
-            </a>
-        </li>
-
     </ul>
     <br>
     <br>

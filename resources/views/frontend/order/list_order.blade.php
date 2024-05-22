@@ -46,10 +46,14 @@
                                             <td>{{number_format($item->total_price)}} VND</td>
                                             <td>{{$item->payment_method}}</td>
                                             <td>
-                                                @if ($item->status == 1)
-                                                    <span class="badge bg-success">Hoàn Thành</span>
-                                                @else
-                                                <span class="badge bg-danger">Chờ Xác Nhận</span>
+                                                @if ($item->status == 0)
+                                                    <span class="badge bg-label-danger me-1">Từ Chối ĐH</span>
+                                                @elseif($item->status == 1)
+                                                    <span class="badge bg-label-primary me-1">Chờ Xác Nhận</span>
+                                                @elseif($item->status == 2)
+                                                    <span class="badge bg-label-primary me-1">Đang Giao Hàng</span>
+                                                @elseif($item->status == 3)
+                                                    <span class="badge bg-label-success me-1">Hoàn Thành</span>
                                                 @endif
                                             </td>
                                         </tr>

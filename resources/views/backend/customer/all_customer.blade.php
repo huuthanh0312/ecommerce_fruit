@@ -50,12 +50,11 @@
                             <td>{{$item->email}}</td>
                             <td>{{$item->phone}}</td>
                             <td>{{$item->address}}</td>
-                            <td class="">
-                                <div class="form-check-success form-check form-switch center">
-                                    <input type="checkbox" class="form-check-input status-toggle large-checkbox"
-                                        id="flexSwitchCheckedDanger" data-customer-id="{{$item->id}}" {{($item->status
-                                    ='active') ? 'checked' : ''}} style="front-size: 10px;">
-
+                            <td>
+                                <div class="form-switch center">
+                                <input type="checkbox" class="form-check-input status-toggle large-checkbox"
+                                        id="flexSwitchCheckedDanger" data-customer-id="{{$item->id}}" 
+                                        {{($item->status ='active') ? 'checked' : ''}} style="front-size: 10px;">
                                 </div>
                             </td>
                             <td>

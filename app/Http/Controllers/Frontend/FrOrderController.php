@@ -116,10 +116,5 @@ class FrOrderController extends Controller
         $order_details = OrderDetail::where('order_id', $order->id)->get();
         return view('frontend.order.details_order', compact('order_details', 'order'));
     }
-    public function TrackingOrder(){
-
-    }
-
-
-    
+  
 }
