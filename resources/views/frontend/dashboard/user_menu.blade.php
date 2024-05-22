@@ -22,13 +22,13 @@
                 <a href="{{route('dashboard')}}">Trang Chủ</a>
             </li>
             <li class="list-group-item d-flex align-items-center p-3">
-                
-                <a href="{{route('order')}}"> Danh Sách Đơn Hàng</a>
+                <a href="{{route('user.profile')}}"> Thông Tin Tài Khoản </a>
             </li>
             <li class="list-group-item d-flex align-items-center p-3">
                 
-                <a href="{{route('user.profile')}}"> Thông Tin Tài Khoản </a>
+                <a href="{{route('order')}}"> Danh Sách Đơn Hàng</a>
             </li>
+           
             <li class="list-group-item d-flex align-items-center p-3">
                 
                 <a href="{{route('user.change.password')}}"> Thay Đổi Mật Khẩu</a>

@@ -44,17 +44,18 @@
                         <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
                             <div class="card-header"><h5>Tổng Tiền Đã Mua Hàng</h5></div>
                             <div class="card-body">
-                                <p>{{number_format($total_price)}} VND</p>
+                                <p> {{number_format($total_price)}} VND</p>
                             </div>
                         </div>
                     </div>
 
                 </div>
-                
+                <hr>
                 <div class="col-lg-12 col-md-12">
                     <div class="billing-details">
                         <h3 class="title">Danh Sách Đơn Hàng</h3>
                         <hr>
+                        @if ($orders->count() > 0)
                         <div class="row">
                             <div class="col-lg-12 col-md-6">
                                 <table class="table table-striped-columns">
@@ -104,6 +105,16 @@
                             </div>
                             
                         </div>
+                        @else
+                       
+                            <div class="alert alert-danger" role="alert">
+                                <h5>Bạn Chưa Có Đơn Hàng !!!</h5>
+                            </div>
+                            <hr>
+                            <a href='{{route('products')}}' class="btn btn-outline-primary">Mua Hàng Ngay</a>
+                        
+                        @endif
+                        
                     </div>
                 </div>
             </div>

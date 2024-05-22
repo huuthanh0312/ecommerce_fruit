@@ -9,8 +9,10 @@ $profileData = App\Models\User::find($id);
 <!-- Single Page Header start -->
 <div class="container-fluid page-header py-5">
     <ol class="breadcrumb justify-content-center mb-0">
-        <li class="breadcrumb-item"><a href="{{ url('/')}}"><h2>Trang Chủ</h2></a></li>
-        <li class="breadcrumb-item">Tài Khoản</li>
+        <li class="breadcrumb-item">
+            <h5><a href="{{url('/')}}">Trang Chủ</a></h5>
+        </li>
+        <li class="breadcrumb-item active text-white">Tài Khoản</li>
     </ol>
 </div>
 <!-- Single Page Header End -->

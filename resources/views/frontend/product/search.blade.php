@@ -124,6 +124,11 @@
                                 </div>
                             </div>
                             @endforeach
+                            <div class="col-12">
+                                <div class="pagination d-flex justify-content-center mt-5">
+                                    {{$results->links('vendor.pagination.custom')}}
+                                </div>
+                            </div>
                         </div>
                         
                         @else
@@ -138,11 +143,7 @@
                             </div>
                         </div>
                         @endif
-                        <div class="col-12">
-                            <div class="pagination d-flex justify-content-center mt-5">
-                                {{$results->links('vendor.pagination.custom')}}
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>

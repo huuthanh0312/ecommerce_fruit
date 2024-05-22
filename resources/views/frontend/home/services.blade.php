@@ -14,8 +14,10 @@ $posts = App\Models\Post::latest()->limit(4)->get();
                 <div class="col-md-6 col-lg-6 col-xl-3">
                     <div class="counter bg-white rounded p-5">
                         <i class="fa fa-users text-secondary"></i>
-                        <h4>{{$item->title}}</h4>
-
+                        
+                        <a href="{{ route('policy', $item->title_slug)}}">
+                            <h4>{{$item->title}}</h4>
+                        </a> 
                     </div>
                 </div>
                 @endforeach

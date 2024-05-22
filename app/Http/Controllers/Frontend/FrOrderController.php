@@ -66,7 +66,7 @@ class FrOrderController extends Controller
             $data->payment_status = 1;
         }else{
             $data->transaction_id = '';
-                $data->payment_status = 0;
+            $data->payment_status = 0;
         }
        
         $data->name = $request->name;
@@ -78,7 +78,7 @@ class FrOrderController extends Controller
         $data->zip_code = $request->zip_code;
 
         $data->code = $code;
-        $data->status = 0;
+        $data->status = 1;
         $data->created_at = Carbon::now();
         $data->save(); 
 

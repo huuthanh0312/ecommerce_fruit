@@ -57,9 +57,9 @@
                             <div class="track">
                                 <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span
                                         class="text">Đã Thanh Toán</span> </div>
-                                <div class="step {{$order->status == 1 ? 'active' : ''}}"> <span class="icon"> <i class="fa fa-user"></i> </span> <span
+                                <div class="step {{$order->status >= 1 ? 'active' : ''}}"> <span class="icon"> <i class="fa fa-user"></i> </span> <span
                                         class="text"> Chờ Xác Nhận</span> </div>
-                                <div class="step {{$order->status == 2 ? 'active' : ''}}"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span
+                                <div class="step {{$order->status >= 2 ? 'active' : ''}}"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span
                                         class="text"> Đang Giao Hàng </span> </div>
                                 <div class="step {{$order->status == 3 ? 'active' : ''}}"> <span class="icon"> <i class="fa fa-box"></i> </span> <span
                                         class="text">Đơn Hàng Thành Công</span> </div>

@@ -187,27 +187,41 @@
 </div>
 <script>
     function Accept(id, code){  
-        var status = 2; 
-        $.ajax({
-            url: "{{route('order.update.status')}}",
-            method: 'POST',
-            data: {
-                order_id: id,
-                status : status,
-                _token: "{{csrf_token()}}"
-            },
-            success: function(data){
-                $('#orderList').html(data);
-                Swal.fire(
-                'Success Accept Order!',
-                `You Accept Order ID: ${code} .`,
-                'success'
-            )
-            },
-            error: function(response){
-                toastr.error(response.message);
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You are sure you want to accept this order?",
+            icon: 'primary',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: `Yes, Accept Order ID : ${code}!`
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var status = 2; 
+                $.ajax({
+                    url: "{{route('order.update.status')}}",
+                    method: 'POST',
+                    data: {
+                        order_id: id,
+                        status : status,
+                        _token: "{{csrf_token()}}"
+                    },
+                    success: function(data){
+                        $('#orderList').html(data);
+                        Swal.fire(
+                        'Success Accept Order!',
+                        `You Accept Order ID: ${code} .`,
+                        'success'
+                    )
+                    },
+                    error: function(response){
+                        toastr.error(response.message);
+                    }
+                })
+            
             }
-        })
+        })   
+        
     }
         
     function Decline(id){ 
@@ -218,7 +232,7 @@
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, Decline it!'
+            confirmButtonText: `Yes, Decline Order ID : ${code}!`
         }).then((result) => {
             if (result.isConfirmed) {
                 var status = 0;   
@@ -248,28 +262,41 @@
         
     }
 
-    function Success(id, code){  
-        var status = 3; 
-        $.ajax({
-            url: "{{route('order.update.status')}}",
-            method: 'POST',
-            data: {
-                order_id: id,
-                status : status,
-                _token: "{{csrf_token()}}"
-            },
-            success: function(data){
-                $('#orderList').html(data);
-                Swal.fire(
-                'Order Successfully!',
-                `You Accept Order ID: ${code} .`,
-                'success'
-            )
-            },
-            error: function(response){
-                toastr.error(response.message);
+    function Success(id, code){ 
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You are sure you want to success this order?",
+            icon: 'success',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: `Yes, Success Order ID : ${code}!`
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var status = 3; 
+                $.ajax({
+                    url: "{{route('order.update.status')}}",
+                    method: 'POST',
+                    data: {
+                        order_id: id,
+                        status : status,
+                        _token: "{{csrf_token()}}"
+                    },
+                    success: function(data){
+                        $('#orderList').html(data);
+                        Swal.fire(
+                        'Order Successfully!',
+                        `You Accept Order ID: ${code} .`,
+                        'success'
+                    )
+                    },
+                    error: function(response){
+                        toastr.error(response.message);
+                    }
+                })
             }
-        })
+        })    
+        
     }
 
     function Restore(id, code){ 
@@ -280,7 +307,7 @@
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, restore it!'
+            confirmButtonText: `Yes, Restore Order ID : ${code}!`
         }).then((result) => {
             if (result.isConfirmed) {
                 var status = 1; 
