@@ -196,6 +196,9 @@ Route::controller(FrontendController::class)->group(function (){
 
     Route::post('contact/store', 'ContactStore')->name('contact.store');
 
+    Route::get('search', 'Search')->name('search');
+
+
 });
  
 Route::controller(FrProductController::class)->group(function (){

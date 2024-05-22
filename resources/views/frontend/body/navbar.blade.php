@@ -3,11 +3,11 @@ $categories = App\Models\Category::orderBy('id', 'asc')->get();
 $carts = Cart::content();
 $countCart = 0;
 foreach($carts as $cart){
-    $countCart += $cart->qty;
+$countCart += $cart->qty;
 }
 $site = App\Models\SiteSetting::find(1);
 @endphp
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <div class="container-fluid fixed-top">
     <div class="container topbar bg-primary d-none d-lg-block">
@@ -19,7 +19,6 @@ $site = App\Models\SiteSetting::find(1);
             <div class="top-link pe-2">
                 <small class="me-3"><i class="fas fa-envelope me-2 text-secondary"></i><a href="#"
                         class="text-white">{{$site->email}}</a></small>
-
             </div>
         </div>
     </div>
@@ -32,8 +31,8 @@ $site = App\Models\SiteSetting::find(1);
                 data-bs-target="#navbarCollapse">
                 <span class="fa fa-bars text-primary"></span>
             </button>
-            <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
-                <div class="navbar-nav mx-auto">
+            <div class="collapse navbar-collapse bg-white " id="navbarCollapse">
+                <div class="navbar-nav mx-auto" id="menuBar">
                     <a href="{{url('/')}}" class="nav-item nav-link active">Trang chủ</a>
                     <a href="{{route('products')}}" class="nav-item nav-link">Trái ngon hôm nay</a>
                     <div class="nav-item dropdown">
@@ -44,24 +43,34 @@ $site = App\Models\SiteSetting::find(1);
                                 class="dropdown-item">{{$category->category_name}}</a>
                             @endforeach
 
-
-
                         </div>
                     </div>
                     <a href="{{route('about')}}" class="nav-item nav-link">Thương Hiệu</a>
                     <a href="{{route('contact')}}" class="nav-item nav-link">Liên Hệ</a>
                 </div>
-                <div class="d-flex m-3 me-0">
-                    <button class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4"
-                        data-bs-toggle="modal" data-bs-target="#searchModal"><i
-                            class="fas fa-search text-primary"></i></button>
+                <form action="{{route('search')}}" method="get">
+                    
+                <div class="navbar-nav mx-auto d-none" id="searchBar">
+                    
+                        <input type="text" name="search" id="search" class="form-control search"  placeholder="Tìm Kiếm Trái Cây" aria-describedby="search-icon-1">
+                        <button type="submit" class="btn-search btn border border-secondary ">Tìm Kiếm</button>
+                    
+                </div>
+                </form>
+                <div class="d-flex m-3 me-0">   
+                    <button id="clickSearch" class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4">
+                        <i class="fas fa-search text-primary " id="ishow"></i>
+                        <i class=" fa fa-power-off text-primary d-none" id="inone"></i>
+                       
+                    </button>
+                  
                     <a class="position-relative me-4 my-auto" data-bs-toggle="modal" data-bs-target="#cartModal">
                         {{-- href="{{route('cart')}}" --}}
                         <i class="fa fa-shopping-bag" style="font-size: 1.5rem;"></i>
 
-                        <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
-                            style="top: -5px; left: 15px; height: 20px; min-width: 20px;"
-                            id="countCart">{{$countCart}}
+                        <span
+                            class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
+                            style="top: -5px; left: 15px; height: 20px; min-width: 20px;" id="countCart">{{$countCart}}
                         </span>
 
                     </a>
@@ -97,26 +106,6 @@ $site = App\Models\SiteSetting::find(1);
     </div>
 </div>
 
-<!-- Modal Search Start -->
-<div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-fullscreen">
-        <div class="modal-content rounded-0">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Search by keyword</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body d-flex align-items-center">
-                <div class="input-group w-75 mx-auto d-flex">
-                    <input type="search" class="form-control p-3" placeholder="keywords"
-                        aria-describedby="search-icon-1">
-                    <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Modal Search End -->
-
 <!-- Modal Cart Start -->
 <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-fullscreen">
@@ -127,16 +116,16 @@ $site = App\Models\SiteSetting::find(1);
                     <span class="" aria-hidden="true">&times;</span></button>
                 <div>
                     <a class="text-uppercase btn btn-outline-warning" href="{{route('cart')}}">Đến Giỏ Hàng</a>
-                    <a class="text-uppercase btn btn-outline-primary {{$carts->count() > 0 ? 'd-inline' : 'd-none'}}" 
+                    <a class="text-uppercase btn btn-outline-primary {{$carts->count() > 0 ? 'd-inline' : 'd-none'}}"
                         href="{{route('checkout')}}" id="dCheckout">Thanh Toán</a>
-                    
+
                 </div>
 
             </div>
             <div class="modal-body align-items-center">
-                <div class="table-responsive myTable" >
+                <div class="table-responsive myTable">
                     @if ($carts->count() > 0)
-                    <table class="table " >
+                    <table class="table ">
                         <thead>
                             <tr>
                                 <th scope="col">Hình Ảnh</th>
@@ -166,14 +155,17 @@ $site = App\Models\SiteSetting::find(1);
                                 <td>
                                     <div class="input-group quantity mt-4" style="width: 100px;">
                                         <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-minus rounded-circle bg-light border" data-product-id="{{$cart->id}}" data-comment-id="{{$cart->rowId}}">
+                                            <button class="btn btn-sm btn-minus rounded-circle bg-light border"
+                                                data-product-id="{{$cart->id}}" data-comment-id="{{$cart->rowId}}">
                                                 <i class="fa fa-minus"></i>
                                             </button>
                                         </div>
-                                        <input type="text" class="form-control form-control-sm text-center border-0 number_cart{{$cart->id}}"
+                                        <input type="text"
+                                            class="form-control form-control-sm text-center border-0 number_cart{{$cart->id}}"
                                             value="{{$cart->qty}}">
                                         <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-plus rounded-circle bg-light border" data-product-id="{{$cart->id}}" data-comment-id="{{$cart->rowId}}">
+                                            <button class="btn btn-sm btn-plus rounded-circle bg-light border"
+                                                data-product-id="{{$cart->id}}" data-comment-id="{{$cart->rowId}}">
                                                 <i class="fa fa-plus"></i>
                                             </button>
                                         </div>
@@ -181,20 +173,23 @@ $site = App\Models\SiteSetting::find(1);
                                 </td>
                                 <td>
                                     <p class="mb-0 mt-4">
-                                        <span class=" total_price_product{{$cart->id}}">{{number_format($cart->subtotal, 0, '.', ',')}}</span> VND
+                                        <span class=" total_price_product{{$cart->id}}">{{number_format($cart->subtotal,
+                                            0, '.', ',')}}</span> VND
                                     </p>
                                 </td>
                                 <td>
-                                    <button id="deleteCart" data-product-id="{{$cart->id}}" data-comment-id="{{$cart->rowId}}"
+                                    <button id="deleteCart" data-product-id="{{$cart->id}}"
+                                        data-comment-id="{{$cart->rowId}}"
                                         class="btn btn-md rounded-circle bg-light border mt-4">
                                         <i class="fa fa-times text-danger"></i>
                                     </button>
                                 </td>
 
                             </tr>
-                            @endforeach     
+                            @endforeach
                         </tbody>
-                        <p>Tổng Tiền : <span class="text-primary sub_total" >{{number_format(Cart::subtotal(), 0)}}</span> VND
+                        <p>Tổng Tiền : <span class="text-primary sub_total">{{number_format(Cart::subtotal(),
+                                0)}}</span> VND
                         </p>
                     </table>
                     @else
@@ -211,3 +206,23 @@ $site = App\Models\SiteSetting::find(1);
     </div>
 </div>
 <!-- Modal Cart End -->
+
+<script>
+    $(document).delegate("#clickSearch","click",function(){
+        var check = $('#menuBar').hasClass('d-none');
+        if(check == false){
+            $('#menuBar').addClass('d-none');
+            $('#searchBar').removeClass('d-none');
+            $('#ishow').addClass('d-none');
+            $('#inone').removeClass('d-none');
+        } else {
+            $('#menuBar').removeClass('d-none');
+            $('#searchBar').addClass('d-none');
+            $('#ishow').removeClass('d-none');
+            $('#inone').addClass('d-none');
+        }
+        
+        
+            
+    });
+</script>

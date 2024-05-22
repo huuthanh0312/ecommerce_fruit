@@ -156,6 +156,7 @@
     .modal-dialog {
         width: 40rem;
     }
+    
 }
 
 .dropdown .dropdown-menu a:hover {
@@ -251,10 +252,16 @@
     .modal-dialog {
         width: 38rem !important;
     }
+    .search{
+        width: 25rem !important;
+    }
 }
 @media (max-width: 600px) {
     .modal-dialog {
         width: 31rem !important;
+    }
+    .search{
+        width: 20rem !important;
     }
 }
 /*** Hero Header end ***/
@@ -646,4 +653,9 @@ p {
     background-color: #ff2b00;
     border-color: #ff2b00;
     border-radius: 1px;
+}
+
+
+.search{
+    width: 33rem;
 }

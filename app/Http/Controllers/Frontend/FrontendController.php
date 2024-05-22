@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Contact;
 use App\Models\Post;
+use App\Models\Product;
 use App\Models\SiteSetting;
 use Illuminate\Http\Request;
 
@@ -45,5 +47,17 @@ class FrontendController extends Controller
         );
         // Notification::send($user, new BookingComplete($request->name));
         return redirect()->back()->with($notification);
+    }
+
+    public function Search(Request $request){
+        $search = $request->search;
+       
+        $results = Product::where('product_name', 'like', '%' . $search . '%')
+                    ->orWhere('code', 'like', '%' . $search . '%')->paginate(9);
+        
+        $product_hot_news = Product::where('hot_new', 1)->limit(4)->get();
+        $product_hot_deals = Product::where('hot_deal', 1)->limit(4)->get();
+        $categories  = Category::all();
+        return view('frontend.product.search', compact('results', 'categories','product_hot_news','product_hot_deals', 'search'));
     }
 }
