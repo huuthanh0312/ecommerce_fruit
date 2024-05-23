@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Mail\OrderConfirm;
 use App\Models\Cart as ModelsCart;
 use App\Models\Category;
 use App\Models\Order;
@@ -13,6 +14,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 use Stripe;
 class FrOrderController extends Controller
 {
@@ -38,7 +40,7 @@ class FrOrderController extends Controller
             'zip_code'=> 'required',
             'payment_method'=> 'required',          
         ]);      
-        $total_price = (Cart::Subtotal());
+        $total_price = (Cart::subtotal());
         //dd($total_price);
         $code = rand(000000000, 999999999);
         $data = new Order();
@@ -97,6 +99,16 @@ class FrOrderController extends Controller
 
         Cart::destroy();
         ModelsCart::where('user_id', Auth::user()->id)->delete();
+        $sendmail = Order::find($data->id);
+        $data_mail = [
+            'code' => $sendmail->code,
+            'name' => $sendmail->name,
+            'email' => $sendmail->email,
+            'phone' => $sendmail->phone,
+            'total_price' => $sendmail->total_price,
+            'created_at' => $sendmail->created_at,
+        ];
+        Mail::to($sendmail->email)->send(new OrderConfirm($data_mail));
         $notification = array(
             'message'=> 'Place Order Successfully',
             'alert-type' => 'success'
