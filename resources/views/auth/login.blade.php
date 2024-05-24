@@ -1,115 +1,147 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" class="light-style customizer-hide" dir="ltr" data-theme="theme-default"
+	data-assets-path="{{asset('backend/')}}" data-template="vertical-menu-template-free">
 
 <head>
+	<meta charset="utf-8" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
 	<title>Thanh Fruit</title>
-	<!--Made with love by Mutiullah Samim -->
 
-	<!--Bootsrap 4 CDN-->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<meta name="description" content="" />
 
-	<!--Fontawesome CDN-->
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
-		integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
-		id="bootstrap-css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- Favicon -->
+	<link rel="icon" type="image/x-icon" href="{{asset('backend/assets/img/favicon/favicon.ico')}}" />
 
-	<!------ Include the above in your HEAD tag ---------->
+	<!-- Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+		rel="stylesheet" />
+
+	<!-- Icons. Uncomment required icon fonts -->
+	<link rel="stylesheet" href="{{asset('backend/assets/vendor/fonts/boxicons.css')}}" />
+
+	<!-- Core CSS -->
+	<link rel="stylesheet" href="{{asset('backend/assets/vendor/css/core.css')}}"
+		class="template-customizer-core-css" />
+	<link rel="stylesheet" href="{{asset('backend/assets/vendor/css/theme-default.css')}}"
+		class="template-customizer-theme-css" />
+	<link rel="stylesheet" href="{{asset('backend/assets/css/demo.css')}}" />
+
+	<!-- Vendors CSS -->
+	<link rel="stylesheet" href="{{asset('backend/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css')}}" />
+
+	<!-- Page CSS -->
+	<!-- Page -->
+	<link rel="stylesheet" href="{{asset('backend/assets/vendor/css/pages/page-auth.css')}}" />
+	<!-- Helpers -->
+	<script src="{{asset('backend/assets/vendor/js/helpers.js')}}"></script>
+	<script src="{{asset('backend/assets/js/config.js')}}"></script>
 	{{-- Toastr --}}
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
-
-	<!--Custom styles-->
-	<link rel="stylesheet" type="text/css" href="{{asset('frontend/css/login.css')}}">
 </head>
 
 <body>
-	<div class="container">
-		<a href="{{url('/')}}" class="btn btn-outline-success">Go Home Thanh Fruit</a>
+	<!-- Content -->
 
-		<div class="d-flex justify-content-center h-120">
-			<div class="card">
-				<div class="card-header">
-					<h3>Login Thanh Fruit</h3>
-					<div class="d-flex justify-content-end social_icon ">
-						<span><i class="fab fa-facebook-square"></i></span>
-						<span><i class="fab fa-google-plus-square"></i></span>
+	<div class="container-xxl">
+		<div class="authentication-wrapper authentication-basic container-p-y">
+			<div class="authentication-inner">
+				<!-- Register -->
+				<div class="card">
+					<div class="card-body">
+						<!-- Logo -->
+						<div class="app-brand justify-content-center pt-0">
+							<a href="{{url('/')}}" class="app-brand-link gap-2">
+								<h2 class="demo text-success fw-bolder">Thanh Fruit Login</h2>
+							</a>
+						</div>
+						<p class="mb-2">Welcome to Thanh Fruit! 👋</p>
+						<form class="mb-3" method="POST" action="{{ route('login') }}">
+							@csrf
+							<div class="mb-3">
+								<label for="email" class="form-label">Email</label>
+								<input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
+									name="email" value="{{old('email')}}" placeholder="Enter your email " autofocus />
+								@error('email')
+								<span class="text-danger">{{ $message }}</span>
+								@enderror
+							</div>
+							<div class="mb-3 form-password-toggle">
+								<div class="d-flex justify-content-between">
+									<label class="form-label" for="password">Password</label>
+									@if (Route::has('password.request'))
+									<div class="col-md-6 text-end">
+										<a href="{{ route('password.request') }}"><small>Forgot Password ?</small></a>
+									</div>
+									@endif
+								</div>
+								<div class="input-group input-group-merge">
+									<input type="password" id="password" class="form-control" name="password"
+										placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+										aria-describedby="password" />
+									<span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+								</div>
+							</div>
+							<div class="mb-3">
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" id="remember-me" name="remember" />
+									<label class="form-check-label" for="remember-me"> Remember Me </label>
+								</div>
+							</div>
+							<div class="mb-3">
+								<button type="submit" class="btn btn-primary d-grid w-100">Sign in</button>
+							</div>
+							<div class="d-flex justify-content-center links">
+								Don't have an account?<a href="{{route('register')}}">Register</a>
+							</div>
+							<div class="row d-none mt-2" id="account">
+
+								<div class="col-lg-12 pt-2 text-center border-top border-success">
+									<h6>Đăng Nhập Tài Khoản</h6>
+									<p> Email : <span class="text-primary">hr@gmail.com</span></p>
+									<p> Password : <span class="text-primary">Hr@12345</span></p>
+								</div>
+							</div>
+						</form>
+
 
 					</div>
 				</div>
-				<div class="card-body">
-					<form method="POST" action="{{ route('login') }}">
-						@csrf
-						<div class="input-group form-group">
-							<div class="input-group-prepend">
-								<span class="input-group-text"><i class="fas fa-envelope"></i></span>
-							</div>
-							<input type="email" class="form-control" name="email" placeholder="Email"
-								value="{{old('email')}}" required autofocus autocomplete="email">
-							@error('email')
-							<span class="text-danger">{{ $message }}</span>
-							@enderror
-						</div>
-						<div class="input-group form-group">
-							<div class="input-group-prepend">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
-							</div>
-							<input type="password" name="password" class="form-control" placeholder="Password" required>
-						</div>
+				<!-- /Register -->
 
-						<div class="row pt-4">
-							<div class="col-md-6 remember">
-								<input type="checkbox" id="remember_me" name="remember">
-								<span>Remember Me</span>
-							</div>
-							<div class="col-md-6"><input type="submit" value="Login" class="btn float-right login_btn">
-							</div>
-
-						</div>
-					</form>
-				</div>
-				<div class="card-footer">
-					<div class="d-flex justify-content-center links">
-						Don't have an account?<a href="{{route('register')}}">Register</a>
-					</div>
-					<div class="d-flex justify-content-center">
-						@if (Route::has('password.request'))
-						<a href="{{ route('password.request') }}">Forgot your password?</a>
-						@endif
-					</div>
-				</div>
 			</div>
 		</div>
-		<br>
-		<br>
-
-		<div class="row  text-center fixed">
-			<div class="col-md-12 text-center text-white">
-				
-				<button id="click" class="btn btn-dark m-2 text-white">Tài Khoản Nhà Tuyển Dụng</button>	
-				<div class="bg-dark  d-none" id="account">
-					<br>
-					<h6 class="mb-2">Đăng Nhập Tài Khoản</h6>
-					<p class="card-text"> Email : <span class="text-primary">hr@gmail.com</span></p>
-					<p class="card-text"> Password : <span class="text-primary">Hr@12345</span></p>
-				</div>
-			</div>
-
-		</div>
-
 	</div>
-	<!-- Copyright Start -->
-	<div class="container-fluid copyright bg-light">
-		<div class="container">
-	
-		</div>
+
+	<!-- / Content -->
+
+	<div class="buy-now">
+
+		<button id="click" class="btn btn-dark m-2 text-white btn-buy-now">Tài Khoản Nhà Tuyển Dụng</button>
 	</div>
-	<!-- Copyright End -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+	<!-- Core JS -->
+	<!-- build:js assets/vendor/js/core.js -->
+	<script src="{{asset('backend/assets/vendor/libs/jquery/jquery.js')}}"></script>
+	<script src="{{asset('backend/assets/vendor/libs/popper/popper.js')}}"></script>
+	<script src="{{asset('backend/assets/vendor/js/bootstrap.js')}}"></script>
+	<script src="{{asset('backend/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js')}}"></script>
+
+	<script src="{{asset('backend/assets/vendor/js/menu.js')}}"></script>
+	<!-- endbuild -->
+
+	<!-- Vendors JS -->
+
+	<!-- Main JS -->
+	<script src="{{asset('backend/assets/js/main.js')}}"></script>
+
+	<!-- Page JS -->
 	<!--Notification-->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
 	<script>
 		$(document).delegate("#click","click",function(){
 			var check = $('#account').hasClass('d-none');
@@ -123,7 +155,7 @@
 		});
 	</script>
 	<script>
-		@if(Session::has('message'))     
+		@if(Session::has('message'))
         var type = "{{ Session::get('alert-type','info') }}"
         switch(type){
             case 'info':
@@ -144,7 +176,7 @@
         }
     @endif 
 	</script>
-	
+
 </body>
 
 </html>

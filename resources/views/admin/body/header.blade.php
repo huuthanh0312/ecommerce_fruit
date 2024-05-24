@@ -24,19 +24,19 @@ $profileData = App\Models\User::find($id)
         <!-- /Search -->
 
         <ul class="navbar-nav flex-row align-items-center ms-auto">
-            <li class="nav-item dropdown dropdown-large ">
+            {{--<li class="nav-item dropdown dropdown-large ">
                 <a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative text-warning" href="#" role="button"
                     data-bs-toggle="dropdown" aria-expanded="false"> 
-                    {{-- <span class="alert-count">8</span> --}}
+                    <span class="alert-count">8</span> 
                     <i class='bx bx-shopping-bag'></i>
                 </a>
-                <div class="dropdown-menu dropdown-menu-end p-3">
+                 <div class="dropdown-menu dropdown-menu-end p-3">
                     <div class="header-message-list p-3">
                         <a class="dropdown-item" href="javascript:;">
                             <div class="d-flex align-items-center gap-3">
                                 <div class="position-relative">
                                     <div class="cart-product rounded-circle bg-light">
-                                        <img src="assets/images/products/11.png" class="" alt="product image">
+                                        <img src="{{asset('backend/assets/images/products/11.png')}}" class="" alt="product image">
                                     </div>
                                 </div>
                                 <div class="flex-grow-1">
@@ -60,8 +60,8 @@ $profileData = App\Models\User::find($id)
                             <button class="btn btn-primary w-100">Checkout</button>
                         </div>
                     </a>
-                </div>
-            </li>
+                </div> 
+            </li>--}}
 
             <!-- User -->
             <li class="nav-item navbar-dropdown dropdown-user dropdown">

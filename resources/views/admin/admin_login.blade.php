@@ -55,7 +55,7 @@
                     <div class="card-body">
                         <!-- Logo -->
                         <div class="app-brand justify-content-center">
-                            <a href="index.html" class="app-brand-link gap-2">
+                            <a href="{{route('admin.login')}}" class="app-brand-link gap-2">
 
                                 <h3 class="demo text-body fw-bolder">Thanh Fruit Admin Login</h3>
                             </a>
@@ -94,8 +94,7 @@
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <button type="submit" class="btn btn-primary d-grid w-100" type="submit">Sign
-                                    in</button>
+                                <button type="submit" class="btn btn-primary d-grid w-100">Sign in</button>
                             </div>
                         </form>
 
