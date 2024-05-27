@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Intervention\Image\Facades\Image;
 
 class ProductController extends Controller
 {
@@ -46,8 +47,9 @@ class ProductController extends Controller
         if ($request->file('image')) {
             $image_name = '';
             $file = $request->file('image');
-            $image_name = date('YmdHi') . '_product_image.' . $file->getClientOriginalName(); //2003.avatar-2
-            $file->move(public_path('upload/product'), $image_name);
+            $image_name = hexdec(uniqid()) . '_product_image.' . $file->getClientOriginalExtension(); //2003.avatar-2
+            Image::make($file)->resize(500, 500)->save('upload/product/'.$image_name);
+            // $file->move(public_path('upload/product'), $image_name);
             $product->image = 'upload/product/' . $image_name;
         }
 
@@ -86,8 +88,10 @@ class ProductController extends Controller
             @unlink(public_path($product->image));
             $image_name = '';
             $file = $request->file('image');
-            $image_name = date('YmdHi') . '_product_image.' . $file->getClientOriginalName(); //2003.avatar-2
-            $file->move(public_path('upload/product'), $image_name);
+            $image_name = hexdec(uniqid()). '_product_image.' . $file->getClientOriginalExtension(); //2003.avatar-2
+            Image::make($file)->resize(500, 500)->save('upload/product/'.$image_name);
+            //$file->move(public_path('upload/product'), $image_name);
+            // dd($image_name);
             $product->image = 'upload/product/' . $image_name;
         }
 

@@ -19,6 +19,26 @@
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
         </li>
+        <!-- Category -->
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-user"></i>
+                <div data-i18n="Authentications">Manage Team</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="{{route('product.all')}}" class="menu-link">
+                        <div data-i18n="Basic">All Team</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{route('product.add')}}" class="menu-link">
+                        <div data-i18n="Basic">Add Team</div>
+                    </a>
+                </li>
+
+            </ul>
+        </li>
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Manage Product</span>
         </li>

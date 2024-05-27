@@ -46,7 +46,7 @@ $product_hot_deals = App\Models\Product::where('hot_deal', 1)->get();
                                         </div>
                                         <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
                                             style="top: 10px; left: 10px;">{{$product->category->category_name}}</div>
-                                        <div class="p-4 border-secondary border-top-0 rounded-bottom">
+                                        <div class="pt-4 pb-4 border-secondary border-top-0 rounded-bottom">
                                             <h5>
                                                 <a href="{{route('product.details', $product->product_name_slug)}}">
                                                     {{$product->product_name}}

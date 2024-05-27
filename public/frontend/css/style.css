@@ -247,13 +247,16 @@
     .page-header {
         margin-top: 97px !important;
     }
+    .search{
+        width: 27rem !important;
+    }
 }
 @media (max-width: 800px) {
     .modal-dialog {
         width: 38rem !important;
     }
     .search{
-        width: 25rem !important;
+        width: auto !important;
     }
 }
 @media (max-width: 600px) {
@@ -261,7 +264,7 @@
         width: 31rem !important;
     }
     .search{
-        width: 20rem !important;
+        width: auto !important;
     }
 }
 /*** Hero Header end ***/
@@ -657,5 +660,6 @@ p {
 
 
 .search{
-    width: 33rem;
+    width: 35rem;
+    margin-right: 5px;
 }

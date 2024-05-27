@@ -50,11 +50,12 @@ $site = App\Models\SiteSetting::find(1);
                 </div>
                 <form action="{{route('search')}}" method="get">
                     
-                <div class="navbar-nav mx-auto d-none" id="searchBar">
-                    
+                <div class="navbar-nav mx-auto d-flex d-none" id="searchBar">
+                    <div class="d-flex mx-auto">
                         <input type="text" name="search" id="search" class="form-control search"  placeholder="Tìm Kiếm Trái Cây" aria-describedby="search-icon-1">
-                        <button type="submit" class="btn-search btn border border-secondary ">Tìm Kiếm</button>
-                    
+                        <button type="submit" class="btn-search btn border border-secondary ">Tìm Kiếm</button>       
+                    </div>
+                      
                 </div>
                 </form>
                 <div class="d-flex m-3 me-0">   
