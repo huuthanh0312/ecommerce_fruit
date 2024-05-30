@@ -30,10 +30,10 @@
                 <table id="example" class="table table-striped table-bordered text-center" style="width:100%">
                     <thead >
                         <tr >
-                            <th>SL</th>
-                            <th>ROLES NAME</th>
+                            <th class="text-center">SL</th>
+                            <th class="text-center">ROLES NAME</th>
                             <th class="text-center">PERMISSION NAME</th>
-                            <th>ACTION</th>
+                            <th class="text-center">ACTION</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -48,18 +48,14 @@
                             @endforeach
                             </td>
                             <td class="p-0">
-                                {{-- @if (Auth::user()->can('testimonial.delete'))
-
-                                @endif
-                                @if (Auth::user()->can('testimonial.delete'))
-                                
-                                @endif --}}
+                                @if (Auth::user()->can('role.permission.action'))
                                 <button onclick="roleInPermissionEdit({{$item->id}})" class="btn btn-outline-warning radius-30" title="Edit">
                                     <i class="bx bx-edit"></i>
                                 </button>
                                 <a href="{{route('role.permission.delete', $item->id)}}" id="delete" class="btn btn-outline-danger radius-30" title="Delete">
                                     <i class="bx bx-trash-alt"></i>
                                 </a>
+                                @endif
                             </td>
                         </tr>
                         @endforeach

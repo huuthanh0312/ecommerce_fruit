@@ -32,10 +32,10 @@
                 <table id="example" class="table table-striped table-bordered text-center" style="width:100%">
                     <thead>
                         <tr>
-                            <th>SL</th>
-                            <th>Title</th>
-                            <th>Description</th>
-                            <th>Action</th>
+                            <th class="text-center">SL</th>
+                            <th class="text-center">Title</th>
+                            <th class="text-center">Description</th>
+                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,11 +46,14 @@
                             <td>{{$item->title}}</td>
                             <td>{{Str::limit($item->description, 25)}}</td>d
                             <td>
+                                @if (Auth::user()->can('post.action'))
                                 <a href="{{route('post.edit', $item->id)}}" class="btn btn-outline-warning radius-30" title="Edit">
                                     <i class="bx bx-edit"></i>
                                 </a>
                                 <a href="{{route('post.delete', $item->id)}}" id="delete" class="btn btn-outline-danger radius-30" title="Delete">
-                                    <i class="bx bx-trash-alt"></i></a>
+                                    <i class="bx bx-trash-alt"></i>
+                                </a>
+                                @endif
                             </td>
                         </tr>
                         @endforeach

@@ -29,10 +29,10 @@
                 <table id="example" class="table table-striped table-bordered text-center" style="width:100%">
                     <thead >
                         <tr>
-                            <th>SL</th>
-                            <th>PERMINSSION NAME</th>
-                            <th>GROUP NAME</th>
-                            <th>ACTION</th>
+                            <th class="text-center">SL</th>
+                            <th class="text-center">PERMINSSION NAME</th>
+                            <th class="text-center">GROUP NAME</th>
+                            <th class="text-center">ACTION</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,12 +43,14 @@
                             <td>{{$item->name}}</td>
                             <td>{{$item->group_name}}</td>
                             <td>
+                                @if (Auth::user()->can('role.permission.action'))
                                 <button onclick="permissionEdit({{$item->id}})" class="btn btn-outline-warning radius-30" title="Edit">
                                     <i class="bx bx-edit"></i>
                                 </button>
                                 <a href="{{ route('permission.delete', $item->id)}}" id="delete" class="btn btn-outline-danger radius-30" title="Delete">
                                     <i class="bx bx-trash-alt"></i>
                                 </a>
+                                @endif
                             </td>
                         </tr>
                         @endforeach

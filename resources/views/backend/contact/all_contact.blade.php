@@ -44,7 +44,6 @@
                             <td>{{$item->email}}</td>
                             <td>{{Str::limit($item->message, 30)}}</td>
                             <td>{{Carbon\Carbon::parse($item->created_at)->diffForHumans()}}</td>
-                            
                         </tr>
                         @endforeach
                     </tbody>

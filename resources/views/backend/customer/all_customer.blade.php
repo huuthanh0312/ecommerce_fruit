@@ -21,7 +21,6 @@
                 </ol>
             </nav>
         </div>
-
     </div>
     <!--end breadcrumb-->
 
@@ -32,13 +31,13 @@
                 <table id="example" class="table table-striped table-bordered text-center" style="width:100%">
                     <thead>
                         <tr>
-                            <th>SL</th>
-                            <th>Customer Name</th>
-                            <th>Customer Email</th>
-                            <th>Customer Phone</th>
-                            <th>Customer Address</th>
-                            <th><span class="text-primary">Active</span>/<span class="text-danger">Inactive</span></th>
-                            <th>Action</th>
+                            <th class="text-center">SL</th>
+                            <th class="text-center">Customer Name</th>
+                            <th class="text-center">Customer Email</th>
+                            <th class="text-center">Customer Phone</th>
+                            <th class="text-center">Customer Address</th>
+                            <th class="text-center"><span class="text-primary">Active</span>/<span class="text-danger">Inactive</span></th>
+                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,6 +49,7 @@
                             <td>{{$item->email}}</td>
                             <td>{{$item->phone}}</td>
                             <td>{{$item->address}}</td>
+                            @if (Auth::user()->can('customer.action'))
                             <td>
                                 <div class="form-switch center">
                                 <input type="checkbox" class="form-check-input status-toggle large-checkbox"
@@ -62,6 +62,7 @@
                                     <i class="bx bx-edit"></i>
                                 </button>
                             </td>
+                            @endif
                         </tr>
                         @endforeach
                     </tbody>

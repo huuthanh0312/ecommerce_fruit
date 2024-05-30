@@ -171,7 +171,6 @@ class AdminController extends Controller
 
         $roles = (int)$request->roles; /// change role by Int
         if($roles){
-            
             $user->assignRole($roles);
         }
 
@@ -187,7 +186,6 @@ class AdminController extends Controller
         if(!is_null($user)){
             $user->delete();
         }
-
         $notification = array(
             'message'=> 'Admin User Deleted Successfully',
             'alert-type' => 'success'

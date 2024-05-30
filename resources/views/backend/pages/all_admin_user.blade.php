@@ -14,13 +14,13 @@
                     </ol>
                 </nav>
             </div>
+            @if (Auth::user()->can('admin.user.action'))
             <div class="ms-auto">
                 <div class="btn-group">
-                    
                     <button data-bs-toggle="modal" data-bs-target="#add_admin_user" class="btn btn-outline-primary px-5 radius-30">Add Admin User</button>
-                    
                 </div>
             </div>
+            @endif
         </div>
         <!--end breadcrumb-->
         
@@ -31,12 +31,12 @@
                     <table id="example" class="table table-striped table-bordered text-center" style="width:100%">
                         <thead >
                             <tr>
-                                <th>IMAGE</th>
-                                <th>NAME</th>
-                                <th>EMAIL</th>
-                                <th>PHONE</th>
-                                <th>ROLE</th>
-                                <th>ACTION</th>
+                                <th class="text-center">IMAGE</th>
+                                <th class="text-center">NAME</th>
+                                <th class="text-center">EMAIL</th>
+                                <th class="text-center">PHONE</th>
+                                <th class="text-center">ROLE</th>
+                                <th class="text-center">ACTION</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -55,18 +55,16 @@
                                
                                 </td>
                                 <td>
-                                    {{-- @if (Auth::user()->can('testimonial.delete'))
-    
-                                    @endif
-                                    @if (Auth::user()->can('testimonial.delete'))
-                                    
-                                    @endif --}}
+                                    @if (Auth::user()->can('admin.user.action'))
                                     <button onclick="adminUserEdit({{$item->id}})" class="btn btn-outline-warning radius-30" title="Edit">
                                         <i class="bx bx-edit"></i>
                                     </button>
                                     <a href="{{ route('admin.user.delete', $item->id)}}" id="delete" class="btn btn-outline-danger radius-30" title="Delete">
                                         <i class="bx bx-trash-alt"></i>
                                     </a>
+                                    @endif
+                                    
+                                    
                                 </td>
                             </tr>
                             @endforeach

@@ -17,6 +17,7 @@
                 </ol>
             </nav>
         </div>
+        @if (Auth::user()->can('category.action'))
         <div class="ms-auto">
             <div class="btn-group">
                 <button data-bs-toggle="modal" data-bs-target="#exampleModal"
@@ -24,6 +25,7 @@
 
             </div>
         </div>
+        @endif
     </div>
     <!--end breadcrumb-->
 
@@ -34,10 +36,10 @@
                 <table id="example" class="table table-striped table-bordered text-center" style="width:100%">
                     <thead>
                         <tr>
-                            <th>SL</th>
-                            <th>Category Name</th>
-                            <th>Category Name Slug</th>
-                            <th>Action</th>
+                            <th class="text-center">SL</th>
+                            <th class="text-center">Category Name</th>
+                            <th class="text-center">Category Name Slug</th>
+                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -48,10 +50,12 @@
                             <td>{{$item->category_name}}</td>
                             <td>{{$item->category_name_slug}}</td>
                             <td>
+                                @if (Auth::user()->can('category.action'))
                                 <button  id="{{$item->id}}" onclick="categoryEdit(this.id)" title="Edit"
                                     class="btn btn-outline-warning radius-30"><i class="bx bx-edit"></i></button>
                                 <a href="{{ route('category.delete', $item->id)}}" id="delete" title="Delete"
                                     class="btn btn-outline-danger radius-30"><i class="bx bx-trash-alt"></i></a>
+                                @endif
                             </td>
                         </tr>
                         @endforeach

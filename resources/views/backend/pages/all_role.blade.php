@@ -31,9 +31,9 @@
                 <table id="example" class="table table-striped table-bordered text-center" style="width:100%">
                     <thead >
                         <tr>
-                            <th>SL</th>
-                            <th>NAME</th>
-                            <th>ACTION</th>
+                            <th class="text-center">SL</th>
+                            <th class="text-center">NAME</th>
+                            <th class="text-center">ACTION</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,12 +43,14 @@
                             <td>{{ $key +1 }}</td>
                             <td>{{$item->name}}</td>
                             <td>
+                                @if (Auth::user()->can('role.permission.action'))
                                 <button onclick="roleEdit({{$item->id}})" class="btn btn-outline-warning radius-30" title="Edit">
                                     <i class="bx bx-edit"></i>
                                 </button>
                                 <a href="{{route('role.delete', $item->id)}}" id="delete" class="btn btn-outline-danger radius-30" title="Delete">
                                     <i class="bx bx-trash-alt"></i>
                                 </a>
+                                @endif
                             </td>
                         </tr>
                         @endforeach
