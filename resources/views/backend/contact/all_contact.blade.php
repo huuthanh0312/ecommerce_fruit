@@ -13,7 +13,7 @@
                     <li class="breadcrumb-item">
                         <a href="{{route('admin.dashboard')}}"><i class="bx bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Contacts</li>
+                    <li class="breadcrumb-item active p-1" aria-current="page">Contacts</li>
                 </ol>
             </nav>
         </div>

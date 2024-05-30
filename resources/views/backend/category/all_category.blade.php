@@ -13,7 +13,7 @@
                     <li class="breadcrumb-item">
                         <a href="{{route('admin.dashboard')}}"><i class="bx bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Categories</li>
+                    <li class="breadcrumb-item active p-1" aria-current="page">Categories</li>
                 </ol>
             </nav>
         </div>
@@ -48,11 +48,10 @@
                             <td>{{$item->category_name}}</td>
                             <td>{{$item->category_name_slug}}</td>
                             <td>
-                                <button data-bs-toggle="modal" data-bs-target="#edit_category" id="{{$item->id}}"
-                                    onclick="categoryEdit(this.id)"
-                                    class="btn btn-outline-warning px-5 radius-30">Edit</button>
-                                <a href="{{ route('category.delete', $item->id)}}" id="delete"
-                                    class="btn btn-outline-danger px-5 radius-30">Delete</a>
+                                <button  id="{{$item->id}}" onclick="categoryEdit(this.id)" title="Edit"
+                                    class="btn btn-outline-warning radius-30"><i class="bx bx-edit"></i></button>
+                                <a href="{{ route('category.delete', $item->id)}}" id="delete" title="Delete"
+                                    class="btn btn-outline-danger radius-30"><i class="bx bx-trash-alt"></i></a>
                             </td>
                         </tr>
                         @endforeach
@@ -121,6 +120,7 @@
         success: function(data){
             $('#id').val(data.id);
             $('#cat_name').val(data.category_name);
+            $('#edit_category').modal('show');
         }
     })
     }

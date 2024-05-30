@@ -177,6 +177,7 @@
     <script>
         $(document).ready(function() {
 			$('#example').DataTable();
+            $('.exampleData').DataTable();
 		  } );
     </script>
     <script>

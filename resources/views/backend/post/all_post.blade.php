@@ -46,10 +46,11 @@
                             <td>{{$item->title}}</td>
                             <td>{{Str::limit($item->description, 25)}}</td>d
                             <td>
-                                <a href="{{route('post.edit', $item->id)}}"
-                                    class="btn btn-outline-warning px-5 radius-30">Edit</a>
-                                <a href="{{route('post.delete', $item->id)}}" id="delete"
-                                    class="btn btn-outline-danger px-5 radius-30">Delete</a>
+                                <a href="{{route('post.edit', $item->id)}}" class="btn btn-outline-warning radius-30" title="Edit">
+                                    <i class="bx bx-edit"></i>
+                                </a>
+                                <a href="{{route('post.delete', $item->id)}}" id="delete" class="btn btn-outline-danger radius-30" title="Delete">
+                                    <i class="bx bx-trash-alt"></i></a>
                             </td>
                         </tr>
                         @endforeach

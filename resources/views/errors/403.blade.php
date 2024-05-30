@@ -57,7 +57,7 @@
                         <div class="app-brand justify-content-center">
                             <a href="{{url('/')}}" class="app-brand-link gap-2">
 
-                                <h3 class="demo fw-bolder text-success">Thanh Fruit</h3>
+                                <h3 class="demo fw-bolder text-success">Thanh Fruit Admin</h3>
                             </a>
                         </div>
 
@@ -69,7 +69,7 @@
                                         <h1 class="display-1"><span class="text-primary">4</span><span class="text-danger">0</span><span class="text-success">3</span></h1>
                                         <h3 class="mb-4">Lost in Space</h3>
                                         <p class="mb-4">You don't have authorization to view this page.</p>
-                                        <a class="btn btn-outline-success" href="/">Go Back To Home</a>
+                                        <a class="btn btn-outline-success" href="{{route('admin.dashboard')}}">Go Back To Home</a>
                                     </div>
                                 </div>
                             </div>

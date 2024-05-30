@@ -31,7 +31,7 @@
             </div>
          
             <div class="col-lg-6 col-md-6">
-                <div class="footer-item justify-content-end pt-3">
+                <div class="footer-item justify-content-end">
                     <h4 class="text-light mb-3">Thông Tin Liên Hệ</h4>
                     <p>Địa Chỉ: {{$site->address}}</p>
                     <p>Email: {{$site->email}}</p>

@@ -17,7 +17,7 @@
                     <li class="breadcrumb-item">
                         <a href="{{route('admin.dashboard')}}"><i class="bx bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Customers</li>
+                    <li class="breadcrumb-item active p-1" aria-current="page">Customers</li>
                 </ol>
             </nav>
         </div>
@@ -58,10 +58,9 @@
                                 </div>
                             </td>
                             <td>
-                                <button data-bs-toggle="modal" data-bs-target="#edit_customer" id="{{$item->id}}"
-                                    onclick="customerEdit(this.id)"
-                                    class="btn btn-outline-warning px-5 radius-30">Edit</button>
-
+                                <button id="{{$item->id}}" onclick="customerEdit(this.id)" class="btn btn-outline-warning radius-30" title="Edit">
+                                    <i class="bx bx-edit"></i>
+                                </button>
                             </td>
                         </tr>
                         @endforeach
@@ -122,12 +121,12 @@
         url:  "/customer/edit/" + id,
         dataType: "json",
         success: function(data){
-            console.log(data);
             $('#id').val(data.id);
             $('#name').val(data.name);
             $('#email').val(data.email);
             $('#phone').val(data.phone);
             $('#address').val(data.address);
+            $('#edit_customer').modal('show');
         }
     })
     }

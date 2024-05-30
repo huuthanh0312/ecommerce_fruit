@@ -52,7 +52,7 @@ $site = App\Models\SiteSetting::find(1);
                     
                 <div class="navbar-nav mx-auto d-flex d-none" id="searchBar">
                     <div class="d-flex mx-auto">
-                        <input type="text" name="search" id="search" class="form-control search"  placeholder="Tìm Kiếm Trái Cây" aria-describedby="search-icon-1">
+                        <input type="text" name="search" id="search" class="form-control search"  placeholder="Tìm Kiếm Trái Cây : Tên, Mã Trái Cây, .." aria-describedby="search-icon-1">
                         <button type="submit" class="btn-search btn border border-secondary ">Tìm Kiếm</button>       
                     </div>
                       
@@ -61,7 +61,7 @@ $site = App\Models\SiteSetting::find(1);
                 <div class="d-flex m-3 me-0">   
                     <button id="clickSearch" class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4">
                         <i class="fas fa-search text-primary " id="ishow"></i>
-                        <i class=" fa fa-power-off text-primary d-none" id="inone"></i>
+                        <i class="fa fa-times text-danger d-none" id="inone"></i>
                        
                     </button>
                   

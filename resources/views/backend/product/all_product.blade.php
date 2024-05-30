@@ -65,11 +65,11 @@
                                         {{($item->status == 1) ? 'checked' : ''}} style="front-size: 10px;">
 
                                 </div>
-                            <td>
+                            <td class="p-0">
                                 <a href="{{ route('product.edit', $item->id)}}" title="Edit"
-                                    class="btn-outline-warning radius-30"><i class="bx bx-edit-alt me-1"></i></a>
+                                    class="btn btn-outline-warning radius-30"><i class="bx bx-edit-alt"></i></a>
                                 <a href="{{ route('product.delete', $item->id)}}" id="delete" title="Delete"
-                                    class="btn-outline-danger radius-30"><i class=" bx bx-trash me-1"></i></a>
+                                    class="btn btn-outline-danger radius-30"><i class=" bx bx-trash"></i></a>
                                     
                             </td>
                         </tr>

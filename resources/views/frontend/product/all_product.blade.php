@@ -70,15 +70,17 @@
                                 <h4 class="mb-3">Trái Cây Bán Chạy</h4>
                                 @foreach ($product_hot_deals as $item)
                                 <div class="d-flex align-items-center justify-content-start">
-                                    <div class="rounded me-4" style="width: 100px; height: 100px;">
-                                        <img src="{{!empty($item->image) ? url($item->image) : asset('upload/no_image.jpg')}}"
-                                            class="img-fluid rounded" alt="">
+                                    <div class="rounded me-4 pt-2" style="width: 30%;">
+                                        <a href="{{route('product.details', $item->product_name_slug)}}">
+                                            <img src="{{!empty($item->image) ? url($item->image) : asset('upload/no_image.jpg')}}"
+                                                class="img-fluid rounded" alt="">
+                                        </a>
                                     </div>
                                     <div>
-                                        <h6 class="mb-2">{{$item->product_name}}</h6>
-
+                                        <a href="{{route('product.details', $item->product_name_slug)}}" class="mb-2">
+                                            {{$item->product_name}}</a>
                                         <div class="d-flex mb-2">
-                                            <h6 class="fw-bold me-2">{{$item->price}}VND</h6>
+                                            <p class="fw-bold me-2">{{$item->price}}VND</p>
                                             {{-- <h5 class="text-danger text-decoration-line-through">4.11 $</h5> --}}
                                         </div>
                                     </div>
@@ -90,15 +92,17 @@
                                 <h4 class="mb-3">Trái Cây Mới Mỗi Ngày</h4>
                                 @foreach ($product_hot_news as $item)
                                 <div class="d-flex align-items-center justify-content-start">
-                                    <div class="rounded me-4" style="width: 100px; height: 100px;">
-                                        <img src="{{!empty($item->image) ? url($item->image) : asset('upload/no_image.jpg')}}"
-                                            class="img-fluid rounded" alt="">
+                                    <div class="rounded me-4 pt-2" style="width: 30%;">
+                                        <a href="{{route('product.details', $item->product_name_slug)}}">
+                                            <img src="{{!empty($item->image) ? url($item->image) : asset('upload/no_image.jpg')}}"
+                                                class="img-fluid rounded" alt="">
+                                        </a>
                                     </div>
                                     <div>
-                                        <h6 class="mb-2">{{$item->product_name}}</h6>
-
+                                        <a href="{{route('product.details', $item->product_name_slug)}}" class="mb-2">
+                                            {{$item->product_name}}</a>
                                         <div class="d-flex mb-2">
-                                            <h6 class="fw-bold me-2">{{$item->price}}VND</h6>
+                                            <p class="fw-bold me-2">{{$item->price}}VND</p>
                                             {{-- <h5 class="text-danger text-decoration-line-through">4.11 $</h5> --}}
                                         </div>
                                     </div>

@@ -84,14 +84,14 @@
 									
 								</div>
 								<div class="input-group input-group-merge">
-									<input type="password" id="password" class="form-control" name="password"
+									<input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" 
 										placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
 										aria-describedby="password" />
 									<span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
-									@error('password')
+								</div>
+								@error('password')
 										<span class="text-danger">{{ $message }}</span>
 									@enderror
-								</div>
 							</div>
 							<div class="mb-3 form-password-toggle">
 								<div class="d-flex justify-content-between">
@@ -102,9 +102,6 @@
 										placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
 										aria-describedby="password" />
 									<span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
-									@error('password_confirmation')
-									<span class="text-danger">{{ $message }}</span>
-									@enderror
 								</div>
 							</div>
 							<div class="mb-3">
