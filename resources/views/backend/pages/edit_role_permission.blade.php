@@ -58,6 +58,13 @@
 
 <script>
     $(document).ready(function(){
+        $('#CheckDefaultMainEdit').click(function(){
+        if($(this).is(":checked")){
+            $('input[type=checkbox]').prop('checked', true);
+            }else{
+                $('input[type=checkbox]').prop('checked', false);
+            }
+        });
         $('.checkboxPerInputAllEdit').on('change', function(){
             var groupName = $(this).data('group-edit');
             var checkBoxInput  = `.checkboxEdit${groupName}`;
