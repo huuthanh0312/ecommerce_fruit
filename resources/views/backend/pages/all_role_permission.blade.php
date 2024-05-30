@@ -162,7 +162,15 @@
             $('input[type=checkbox]').prop('checked', false);
         }
     });
-
+    
+    $('#CheckDefaultMainEdit').click(function(){
+        if($(this).is(":checked")){
+            $('input[type=checkbox]').prop('checked', true);
+           
+        }else{
+            $('input[type=checkbox]').prop('checked', false);
+        }
+    });
     $(document).ready(function(){
         $('.checkboxPerInputAll').on('change', function(){
             var groupName = $(this).data('group-name');
