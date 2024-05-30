@@ -23,17 +23,18 @@
                                 $permission_group_name = App\Models\User::getPermissionGroupName($permission->group_name);
                             @endphp
                             <div class="col-md-6 p-2">
-                                <input type="checkbox" class="form-check-label" id="flexCheckDefault" 
+                                <input type="checkbox" class="form-check-label checkboxPerInputAllEdit" data-group-edit="{{$permission->group_name}}" id="groupNameEdit{{$permission->group_name}}" 
                                     {{ App\Models\User::roleHasPermissions($role, $permission_group_name) ? 'checked' : '' }}>
-                                <label for="flexCheckDefault" class="form-label text-primary">{{$permission->group_name}}</label>
+                                <label for="groupNameEdit{{$permission->group_name}}" class="form-label text-primary">{{$permission->group_name}}</label>
                             </div>
                            
                             <div class="col-md-6 p-2" >
                                 @foreach ($permission_group_name as $item)
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-label" name="permission[]" id="flexCheckDefault{{$item->id}}" 
-                                                value="{{ $item->id}}" {{$role->hasPermissionTo($item->name) ? 'checked' : ''}}>
-                                        <label for="flexCheckDefault{{$item->id}}" class="form-label">{{ $item->name}}</label>
+                                        <input type="checkbox" class="form-check-label flexCheckDefaultEdit checkboxEdit{{$permission->group_name}}" name="permission[]"
+                                                 id="flexCheckDefaultEdit{{$item->id}}" value="{{ $item->id}}" data-group-edit="{{$permission->group_name}}"
+                                                  {{$role->hasPermissionTo($item->name) ? 'checked' : ''}}>
+                                        <label for="flexCheckDefaultEdit{{$item->id}}" class="form-label">{{ $item->name}}</label>
                                     </div>
                                     
                                 @endforeach
@@ -54,3 +55,38 @@
         </div>
     </form>
 </div>
+
+<script>
+    $(document).ready(function(){
+        $('.checkboxPerInputAllEdit').on('change', function(){
+            var groupName = $(this).data('group-edit');
+            var checkBoxInput  = `.checkboxEdit${groupName}`;
+            
+            if($(this).is(":checked")){
+                $(checkBoxInput).prop('checked', true);
+            } else{
+                $(checkBoxInput).prop('checked', false);
+            }
+        })
+
+        $('.flexCheckDefaultEdit').on('change', function(){
+            var groupName = $(this).data('group-edit');
+            var checkBoxInput  = `.checkboxEdit${groupName}`;
+            var sumCheck = 0;
+            var check = 0;
+            $(checkBoxInput).each(function(){ 
+                if($(this).is(":checked")){
+                    check += 1;
+                }
+                sumCheck += 1;
+            })
+            
+            var checkBoxInputAll  = `#groupNameEdit${groupName}`;
+            if(sumCheck === check){
+                $(checkBoxInputAll).prop('checked', true);
+            } else{
+                $(checkBoxInputAll).prop('checked', false);
+            }
+        })        
+    })
+</script>

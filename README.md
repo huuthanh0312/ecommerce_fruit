@@ -1,7 +1,7 @@
 
 <h1>Tên Dự Án: Build Website Ecommerce Fruit Laravel 10 Framework</h1>
 <p>Mô tả ngắn về dự án và mục tiêu .</p>
-<b> Dự án nhằm xậy dựng trang web bán trái cây bao gồm các chứ năng: đăng nhập, đăng kí, đơn hàng, thanh toán và quản trị dự án </b>
+<b> Dự án nhằm xậy dựng trang web bán trái cây bao gồm các chức năng: đăng nhập, đăng kí, sản phẩm, đơn hàng, thanh toán ,quản trị website và phân quyền admin </b>
 
 <b>Link Demo Project : https://thanhfruit.wuaze.com</b>
 <hr>
@@ -19,7 +19,7 @@ Clone repo từ GitHub:
 <br>
 Di chuyển vào thư mục dự án:
 <br>
-cd yourproject
+<b>cd yourproject</b>
 <br>
 Cài đặt các dependency:
 <br>
@@ -27,7 +27,7 @@ Cài đặt các dependency:
 <br>
 Sao chép tệp .env.example thành .env:
 <br>
-cp .env.example .env
+<b>cp .env.example .env</b>
 <br>
 Generate key cho ứng dụng Laravel:
 <br>
@@ -42,7 +42,6 @@ Chạy các migration và seeders:
 Khởi động máy chủ phát triển:
 <br>
 <b>php artisan serve</b>
-
 <br>
 <h1>Cảm Ơn Bạn đã Xem !!!</h1>
 <br>
