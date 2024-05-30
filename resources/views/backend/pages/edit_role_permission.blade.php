@@ -12,8 +12,8 @@
                     <h3>Role Name : {{$role->name}}</h3>
                 </div>
                 <div class="col-md-12 p-2 ">                            
-                    <input type="checkbox" class="form-check-label " id="CheckDefaultMain">
-                    <label for="CheckDefaultMain" class="form-label text-primary ">Permission All</label>                                                       
+                    <input type="checkbox" class="form-check-label " id="CheckDefaultMainEdit">
+                    <label for="CheckDefaultMainEdit" class="form-label text-primary ">Permission All</label>                                                       
                 </div>
                 <hr>
                 <div class="row">              
@@ -67,6 +67,20 @@
             } else{
                 $(checkBoxInput).prop('checked', false);
             }
+            //check all 
+            var sumCheckAll = 0;
+            var checkAll = 0;
+            $('.checkboxPerInputAllEdit').each(function(){ 
+                if($(this).is(":checked")){
+                    checkAll += 1;
+                }
+                sumCheckAll += 1;
+            })
+            if(sumCheckAll  === checkAll){
+                $("#CheckDefaultMain").prop('checked', true);
+            } else{
+                $("#CheckDefaultMain").prop('checked', false);
+            }
         })
 
         $('.flexCheckDefaultEdit').on('change', function(){
@@ -86,6 +100,20 @@
                 $(checkBoxInputAll).prop('checked', true);
             } else{
                 $(checkBoxInputAll).prop('checked', false);
+            }
+            //check all 
+            var sumCheckAll = 0;
+            var checkAll = 0;
+            $('.checkboxPerInputAllEdit').each(function(){ 
+                if($(this).is(":checked")){
+                    checkAll += 1;
+                }
+                sumCheckAll += 1;
+            })
+            if(sumCheckAll  === checkAll){
+                $("#CheckDefaultMainEdit").prop('checked', true);
+            } else{
+                $("#CheckDefaultMainEdit").prop('checked', false);
             }
         })        
     })

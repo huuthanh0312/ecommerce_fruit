@@ -173,6 +173,21 @@
             } else{
                 $(checkBoxInput).prop('checked', false);
             }
+
+            //check all 
+            var sumCheckAll = 0;
+            var checkAll = 0;
+            $('.checkboxPerInputAll').each(function(){ 
+                if($(this).is(":checked")){
+                    checkAll += 1;
+                }
+                sumCheckAll += 1;
+            })
+            if(sumCheckAll  === checkAll){
+                $("#CheckDefaultMain").prop('checked', true);
+            } else{
+                $("#CheckDefaultMain").prop('checked', false);
+            }
         })
 
         $('.flexCheckDefault').on('change', function(){
@@ -192,6 +207,20 @@
                 $(checkBoxInputAll).prop('checked', true);
             } else{
                 $(checkBoxInputAll).prop('checked', false);
+            }
+            //check all 
+            var sumCheckAll = 0;
+            var checkAll = 0;
+            $('.checkboxPerInputAll').each(function(){ 
+                if($(this).is(":checked")){
+                    checkAll += 1;
+                }
+                sumCheckAll += 1;
+            })
+            if(sumCheckAll  === checkAll){
+                $("#CheckDefaultMain").prop('checked', true);
+            } else{
+                $("#CheckDefaultMain").prop('checked', false);
             }
         })        
     })
