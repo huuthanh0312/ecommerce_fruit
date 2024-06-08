@@ -123,8 +123,7 @@
                     data: {id: id, qty: qty, _token: "{{csrf_token()}}"},
                     success: function(data){
                         toastr.success('Add Product Successfully');
-                        $(".myTable").html(data);   
-                          
+                        $(".myTable").html(data);      
                     },
                     error: function(error){
                         toastr.error('Error Add Product Faild');
@@ -143,8 +142,7 @@
                 data: {id: id, rowId: rowId, _token: "{{csrf_token()}}"},
                 success: function(data){
                     toastr.warning('Deleted Product Successfully');                     
-                    $(".myTable").html(data);
-                                              
+                    $(".myTable").html(data);                         
                 },
                 error: function(error){
                     toastr.error('Error Deleted Product Faild');
@@ -209,9 +207,7 @@
                     button.parent().parent().find('input').val(newVal);
                 }
                 
-            }
-            
-            
+            }    
         });
 
     </script>

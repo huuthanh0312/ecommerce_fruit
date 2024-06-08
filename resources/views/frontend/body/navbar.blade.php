@@ -33,8 +33,8 @@ $site = App\Models\SiteSetting::find(1);
             </button>
             <div class="collapse navbar-collapse bg-white " id="navbarCollapse">
                 <div class="navbar-nav mx-auto" id="menuBar">
-                    <a href="{{url('/')}}" class="nav-item nav-link active">Trang chủ</a>
-                    <a href="{{route('products')}}" class="nav-item nav-link">Trái ngon hôm nay</a>
+                    <a href="{{url('/')}}" class="nav-item nav-link active">Trang Chủ</a>
+                    <a href="{{route('products')}}" class="nav-item nav-link">Trái Ngon Hôm Nay</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle " data-bs-toggle="dropdown">Danh Mục</a>
                         <div class="dropdown-menu m-0 bg-secondary rounded-0 ">
@@ -42,38 +42,34 @@ $site = App\Models\SiteSetting::find(1);
                             <a href="{{route('category.product', $category->category_name_slug)}}"
                                 class="dropdown-item">{{$category->category_name}}</a>
                             @endforeach
-
                         </div>
                     </div>
                     <a href="{{route('about')}}" class="nav-item nav-link">Thương Hiệu</a>
                     <a href="{{route('contact')}}" class="nav-item nav-link">Liên Hệ</a>
                 </div>
                 <form action="{{route('search')}}" method="get">
-                    
-                <div class="navbar-nav mx-auto d-flex d-none" id="searchBar">
-                    <div class="d-flex mx-auto">
-                        <input type="text" name="search" id="search" class="form-control search"  placeholder="Tìm Kiếm Trái Cây : Tên, Mã Trái Cây, .." aria-describedby="search-icon-1">
-                        <button type="submit" class="btn-search btn border border-secondary ">Tìm Kiếm</button>       
-                    </div>
-                      
-                </div>
-                </form>
-                <div class="d-flex m-3 me-0">   
-                    <button id="clickSearch" class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4">
-                        <i class="fas fa-search text-primary " id="ishow"></i>
-                        <i class="fa fa-times text-danger d-none" id="inone"></i>
-                       
-                    </button>
-                  
-                    <a class="position-relative me-4 my-auto" data-bs-toggle="modal" data-bs-target="#cartModal">
-                        {{-- href="{{route('cart')}}" --}}
-                        <i class="fa fa-shopping-bag" style="font-size: 1.5rem;"></i>
 
+                    <div class="navbar-nav mx-auto d-flex d-none" id="searchBar">
+                        <div class="d-flex mx-auto">
+                            <input type="text" name="search" id="search" class="form-control search m-2"
+                                placeholder="Tìm Kiếm Trái Cây : Tên, Mã Sản Phẩm, .." aria-describedby="search-icon-1">
+                            <button type="submit" class="btn-search btn border border-secondary m-2">Tìm Kiếm</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="d-flex m-3 me-0">
+                    <button id="clickSearch"
+                        class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4">
+                        <i class="fas fa-search text-primary" id="ishow"></i>
+                        <i class="fa fa-times text-danger d-none" id="inone"></i>
+                    </button>
+
+                    <a class="position-relative me-4 my-auto" data-bs-toggle="modal" data-bs-target="#cartModal">
+                        <i class="fa fa-shopping-bag" style="font-size: 1.5rem;"></i>
                         <span
                             class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
                             style="top: -5px; left: 15px; height: 20px; min-width: 20px;" id="countCart">{{$countCart}}
                         </span>
-
                     </a>
                     @if (Auth::check())
                     <div class="position-relative me-4 my-auto">
@@ -92,15 +88,14 @@ $site = App\Models\SiteSetting::find(1);
                     <div class="position-relative me-4 my-auto">
                         <div class="nav-item dropdown ">
                             <a href="#" class="nav-link " data-bs-toggle="dropdown">
-                                <i class="fas fa-user " style="font-size: 1.5rem;"></i></a>
+                                <i class="fas fa-user" style="font-size: 1.5rem;"></i></a>
                             <div class="dropdown-menu m-0 bg-secondary rounded-0">
-                                <a href="{{route('login')}}" class="dropdown-item">Login</a>
-                                <a href="{{route('register')}}" class="dropdown-item">Register</a>
+                                <a href="{{route('login')}}" class="dropdown-item">Đăng Nhập</a>
+                                <a href="{{route('register')}}" class="dropdown-item">Đăng Kí</a>
                             </div>
                         </div>
                     </div>
                     @endif
-
                 </div>
             </div>
         </nav>
@@ -119,7 +114,6 @@ $site = App\Models\SiteSetting::find(1);
                     <a class="text-uppercase btn btn-outline-warning" href="{{route('cart')}}">Đến Giỏ Hàng</a>
                     <a class="text-uppercase btn btn-outline-primary {{$carts->count() > 0 ? 'd-inline' : 'd-none'}}"
                         href="{{route('checkout')}}" id="dCheckout">Thanh Toán</a>
-
                 </div>
 
             </div>
@@ -189,14 +183,13 @@ $site = App\Models\SiteSetting::find(1);
                             </tr>
                             @endforeach
                         </tbody>
-                        <p>Tổng Tiền : <span class="text-primary sub_total">{{number_format(Cart::subtotal(),
-                                0)}}</span> VND
+                        <p>Tổng Tiền : <span class="text-primary sub_total">{{number_format(Cart::subtotal(),0)}}</span>
+                            VND
                         </p>
                     </table>
                     @else
                     <div class="alert alert-danger" role="alert">
                         <h5>Không có sản phẩm trong giỏ hàng</h5>
-
                     </div>
                     <a href='{{route('products')}}' class="btn btn-outline-primary">Mua Hàng Ngay</a>
                     @endif
@@ -221,9 +214,6 @@ $site = App\Models\SiteSetting::find(1);
             $('#searchBar').addClass('d-none');
             $('#ishow').removeClass('d-none');
             $('#inone').addClass('d-none');
-        }
-        
-        
-            
+        }     
     });
 </script>

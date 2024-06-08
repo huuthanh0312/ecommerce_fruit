@@ -13,6 +13,4 @@
 @include('frontend.home.services')
 <!-- Bestsaler Product End -->
 
-
-
 @endsection
