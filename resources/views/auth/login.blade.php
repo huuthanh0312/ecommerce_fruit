@@ -45,6 +45,9 @@
 								aria-describedby="password" />
 							<span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
 						</div>
+						@error('password')
+						<span class="text-danger">{{ $message }}</span>
+						@enderror
 					</div>
 					<div class="mb-3">
 						<div class="form-check">

@@ -68,6 +68,7 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         return view('backend.product.edit_product', compact('product', 'categories'));
     } //end methods
+    
     // Update Product
     public function UpdateProduct(Request $request)
     {

@@ -29,7 +29,8 @@
                                     <ul class="list-unstyled fruite-categorie">
                                         @foreach ($categories as $cate)
                                         @php
-                                        $coutProduct = App\Models\Product::where('category_id',$cate->id)->count();
+                                        $coutProduct =
+                                        App\Models\Product::where('category_id',$cate->id)->where('status', 1)->count();
                                         @endphp
                                         <li>
                                             <div class="d-flex justify-content-between fruite-name">
@@ -92,7 +93,7 @@
                         </div>
                     </div>
                     <div class="col-lg-9">
-                     
+
                         @if($results->count() > 0)
                         <div class="row g-4 justify-content-center">
                             @foreach ($results as $product)
@@ -134,20 +135,20 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         @else
                         <div class="card">
                             <div class="card-body">
-                                
+
                                 <div class="alert alert-danger" role="alert">
                                     <h5>Không có sản phẩm bạn đang tìm kiếm !!!</h5>
                                 </div>
                                 <hr>
-                                <a href='{{route('products')}}' class="btn btn-outline-primary">Mua Hàng Ngay</a>
+                                <a href='{{route(' products')}}' class="btn btn-outline-primary">Mua Hàng Ngay</a>
                             </div>
                         </div>
                         @endif
-                        
+
                     </div>
                 </div>
             </div>
